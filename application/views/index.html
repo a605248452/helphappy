@@ -1,75 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>FAST首页</title>
-    <style>
-		body{
-			background: rgba(220, 55, 55, 0.9);
-    		background-size: 100% 100%;
-    		font-family: Trebuchet MS, snas-serif;
-		}
-		h2{
-			
-		    -webkit-margin-before: 0.83em;
-		    -webkit-margin-after: 0.83em;
-		    -webkit-margin-start: 0px;
-		    -webkit-margin-end: 0px;
-		    text-align: center;
-		    box-sizing: border-box;
-		    font-size: 60px;
-		    line-height: 60px;
-		    font-weight: 700;
-		    color: #fff;
-		    text-decoration: none;
-		    text-transform: uppercase;
-		    text-shadow: -1px 0 1px #000;
-		    background-color: transparent;
-		    border-width: 0px;
-		    border-color: #000;
-		    border-style: none;
-		    margin-top: 40px;
-		    margin-bottom: 20px;
-		    display: block;
-		}
-		h4{
-			font-size: 18px;
-		    color: #f7f7f7;
-		    margin-bottom: 30px;
-		    font-weight: 600;
-		    text-shadow: 0px 1px 1px #000;
-		    text-transform: uppercase;
-	        margin-top: 10px;
-	        line-height: 1.1;
-	        box-sizing: border-box;
-            display: block;
-		    -webkit-margin-before: 1.33em;
-		    -webkit-margin-after: 1.33em;
-		    -webkit-margin-start: 0px;
-		    -webkit-margin-end: 0px;
-		    text-align: center;
-		}
-		.center{
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			width:50%;
-			height: 50%;
-			-webkit-transform: translateX(-50%) translateY(-50%);
-		}
-    </style>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>赚不停</title>
+     <link rel="stylesheet" type="text/css" href="public/css/slick.css"/>
+    <link rel="stylesheet" href="public/css/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="public/css/style.css"/>
+    <script src="public/js/jquery.min.js"></script>
+     <script src="public/js/jquery.mobile-1.4.5.min.js"></script>
 </head>
-
-<body>
-	<div class="center">
-		<h2>FAST MVC</h2>
-		<h4>欢迎来到FAST MVC</h4>
-		<h4>开始你的第一个应用</h4>
+<body style="background-color: #f2f2f2;">
+	<div class="loading"><img src="public/images/ajax-loader.gif"/></div>
+	<div data-role="page" class="index" id="index">
+		<header data-role="header">
+			<h3>赚不停</h3>
+		</header>
+		<div class="ui-content" data-role="content"> 
+			<ul class="slick">
+			    <li><a href="#"><img src="public/images/ban01.png"/></a></li>
+			    <li><a href="#"><img src="public/images/ban02.png"/></a></li>
+			    <li><a href="#"><img src="public/images/ban03.png"/></a></li>
+			    <li><a href="#"><img src="public/images/ban04.png"/></a></li>
+			</ul>
+			<ul class="index-menu">
+				<li>
+					<img src="public/images/icon01.png"/>
+					<p>保险承保</p>
+				</li>
+				<li>
+					<img src="public/images/icon02.png"/>
+					<p>当日计息</p>
+				</li>
+				<li>
+					<img src="public/images/icon03.png"/>
+					<p>续投加息</p>
+				</li>
+			</ul>
+			<dl class="index-year">
+				<a href="month.html" data-transition="slide" data-ajax="false">
+					<dd>
+						<h4>月月盈</h4>
+						<p><small>年化</small>6.0%起</p>
+					</dd>
+					<dt>支持续投，次月起年化收益增加0.1%</dt>
+				</a>
+			</dl>
+			<dl class="index-year">
+				<a href="month.html" data-transition="slide" data-ajax="false">
+					<dd>
+						<h4>季度丰</h4>
+						<p><small>年化</small>6.3%起</p>
+					</dd>
+					<dt>支持续投，次月起年化收益增加0.1%</dt> 
+				</a>
+			</dl>
+			<dl class="index-year">
+				<a href="month.html" data-transition="slide" data-ajax="false">
+					<dd>
+						<h4>半年享</h4>
+						<p><small>年化</small>6.6%起</p>
+					</dd>
+					<dt>支持续投，次月起年化收益增加0.1%</dt>
+				</a>
+			</dl>
+		</div>
+		<footer data-role="footer" data-position="fixed">  
+			<ul>
+				<li><a href="index.html"  rel="external">接单</a></li>
+				<li><a href="self.html"  rel="external">发单</a></li>
+				<li><a href="self.html"  rel="external">我的</a></li>
+			</ul>
+		</footer>
+		<script src="public/js/slick.min.js" ></script>
+	    <script type="text/javascript">
+	    	$(document).on("pagecreate","#index",function(){
+ 					$('.slick').slick({
+						    	dots:true,
+						    	autoplay:true,
+						    	autoplaySpeed:2000,
+						    	arrows:false,
+						    }); 
+					
+					});
+					$(window).load(function(){
+						$(".loading").fadeOut()
+					})
+	    </script>
 	</div>
 </body>
-
 </html>
