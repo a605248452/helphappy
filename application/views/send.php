@@ -142,7 +142,7 @@
 					
 					map.addEventListener("click", function(e){ 
 						//经纬度获取       
-						alert(e.point.lng + ", " + e.point.lat);
+						// alert(e.point.lng + ", " + e.point.lat);
 						$.get('http://api.map.baidu.com/geocoder/v2/?ak=ERtymnt2XAAWdaDdLGE60jqk0pm4Q4kT&callback=renderReverse&location='+e.point.lat+','+e.point.lng+'&output=json&pois=1',function(msg){
 							if(status==0)
 							{
