@@ -28,7 +28,7 @@
 	<div class="loading"><img src="{{host}}public/images/ajax-loader.gif"/></div>
 	<!-- 遮罩层 -->
 	<div id="mask" class="mask" style="display:none;">
-		<div id="allmap"></div>
+		<div id="allmap" onclick="hideMask()"></div>
 	</div>
 	<div data-role="page" class="touzi" id="touzi">
 		<!--jqmb需要把所以东西放在page div内-->
@@ -42,28 +42,28 @@
 		</header>
 		<div class="ui-content" data-role="content">
 			 <div data-role="main" class="ui-content">
-			    <form method="post" action="demo_form.php">
+			    <form method="post" action="{{host}}lists/add_lists" data-ajax="false">
 			      <div class="ui-field-contain">
 			        <label for="fullname">标题：</label>
-			        <input type="text" name="fullname" id="fullname"> 
+			        <input type="text" name="title" id="fullname"> 
 			        <label for="fullname">详情：</label>
-			        <textarea name="" id="" cols="30" rows="10"></textarea>   
+			        <textarea name="content" id="" cols="30" rows="10"></textarea>   
 			        <label for="fullname">个人联系方式</label>
 			        <input type="text" name="call" id="fullname"> 
 			        <label for="bday">结束时间：</label>
-			        <input type="date" name="bday" id="bday">
-			        <label for="email">E-mail:</label>
-			        <input type="email" name="email" id="email" placeholder="你的电子邮箱..">
+			        <input type="date" name="end_time" id="bday">
 					<label for="fullname">本单金额：</label>
 			        <input type="text" name="list_money" id="fullname"> 
 			        <label for="fullname">标违约金额：</label>
 			        <input type="text" name="violate_money" id="fullname"> 
-			        <input type="button" name="fullname" onclick="showMask()" id="address" value="任务地址">
-			        <input type="text" name="address" id="fullname">
-			        <label for="fullname">约定交易地址：</label>
-			        <input type="text" name="fullname" id="end_address" value=""> 
+			        <input type="button" name="fullname" class="showMask" status="0" value="任务地址">
+			        <input type="text" name="address" id="address" readOnly="true">
+			        <input type="button" name="fullname" class="showMask" status="1" value="约定交易地址">
+			        <input type="text" name="end_address" id="end_address" readOnly="true"> 
+			        <input type="hidden" name="mission" id="mission">
+			        <input type="hidden" name="finish" id="finish">
 			      </div>
-			      <input type="submit" data-inline="true" value="提交">
+			      <input type="submit" data-inline="true" id="btn" value="提交">
 			    </form>
 			  </div>
 			</div>
@@ -100,13 +100,20 @@
 			})
 		</script>
 		<pre class="html" name="code"><script type="text/javascript">     
+			//定义status，如果0则任务地址，如果1交易完成地址
+			var status;
+			//定义任务地址的经纬度
+			var mission;
+			//定义交易完成地址的经纬度
+			var finish;
 		    //兼容火狐、IE8   
-		    //显示遮罩层    
-		    function showMask(){     
+		    //显示遮罩层 
+		    $(".showMask").click(function(){
+		    	status = ($(this).attr('status'));
 		        $("#mask").css("height",$(document).height());     
-		        $("#mask").css("width",$(document).width());     
-		        $("#mask").show();     
-		    }  
+		        $("#mask").css("width",$(document).width());   
+		        $("#mask").show();
+		    })
 		    //隐藏遮罩层  
 		    function hideMask(){     
 		          
@@ -115,36 +122,55 @@
 		</script>  
 		<script>
 			//获取经纬度
-			    $(function(){  
-			      if (navigator.geolocation)  
-			        {  
-			        navigator.geolocation.getCurrentPosition(showPosition);  
-			        }  
-			      else{x.innerHTML="Geolocation is not supported by this browser.";}  
-			      
-			    })  
-
+				$(function(){  
+				  if (navigator.geolocation)  
+					{  
+					navigator.geolocation.getCurrentPosition(showPosition);  
+					}  
+				  else{x.innerHTML="Geolocation is not supported by this browser.";}  
+				  
+				})  
 				// 百度地图API功能
 				function showPosition(position)
 				{
-						// 百度地图API功能
-				var map = new BMap.Map("allmap");
-				map.centerAndZoom(new BMap.Point(position.coords.longitude,position.coords.latitude),8);
-				// map.centerAndZoom(point,12);
-				setTimeout(function(){
+					var map = new BMap.Map("allmap");
+					map.centerAndZoom(new BMap.Point(position.coords.longitude,position.coords.latitude),8);
+					setTimeout(function(){
 						map.setZoom(14);   
 					}, 2000);  //2秒后放大到14级
 					map.enableScrollWheelZoom(true);
-				var geoc = new BMap.Geocoder();    
-
-				map.addEventListener("click", function(e){ 
-					//经纬度获取       
-					alert(e.point.lng + ", " + e.point.lat);
-					$.get('http://api.map.baidu.com/geocoder/v2/?ak=ERtymnt2XAAWdaDdLGE60jqk0pm4Q4kT&callback=renderReverse&location='+e.point.lat+','+e.point.lng+'&output=json&pois=1',function(msg){
-				      	alert(msg.result.formatted_address)
-				    },'jsonp')       
-				});
+					
+					map.addEventListener("click", function(e){ 
+						//经纬度获取       
+						alert(e.point.lng + ", " + e.point.lat);
+						$.get('http://api.map.baidu.com/geocoder/v2/?ak=ERtymnt2XAAWdaDdLGE60jqk0pm4Q4kT&callback=renderReverse&location='+e.point.lat+','+e.point.lng+'&output=json&pois=1',function(msg){
+							if(status==0)
+							{
+								$("#mission").val(e.point.lng + ", " + e.point.lat)
+								$("#address").val(msg.result.formatted_address)
+							}else{
+								$("#finish").val(e.point.lng + ", " + e.point.lat)
+								$("#end_address").val(msg.result.formatted_address)
+							}
+						},'jsonp')
+					});
+					
+					var geolocation = new BMap.Geolocation();
+					geolocation.getCurrentPosition(function(r){
+						if(this.getStatus() == BMAP_STATUS_SUCCESS){
+							var mk = new BMap.Marker(r.point);
+							map.addOverlay(mk);
+							map.panTo(r.point);
+							//alert('您的位置：'+r.point.lng+','+r.point.lat);
+						}
+						else {
+							alert('failed'+this.getStatus());
+						}        
+					},{enableHighAccuracy: true})
 				}
+			$("#btn").click(function(){
+
+			})
 		</script>
 	</div>
 	
