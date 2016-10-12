@@ -9,7 +9,7 @@
 <!-- 地图样式 -->
 <style type="text/css">
 	body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
-	#allmap{width:100%;height:500px;}
+	#allmap{width:100%;height:100%;}
 	p{margin-left:5px; font-size:14px;}
 </style>
 
@@ -58,8 +58,8 @@
 			        <input type="text" name="list_money" id="fullname"> 
 			        <label for="fullname">标违约金额：</label>
 			        <input type="text" name="violate_money" id="fullname"> 
-			        <label for="fullname">任务地址：</label>
-			        <input type="text" name="fullname" onclick="showMask()" id="address" value="">
+			        <input type="button" name="fullname" onclick="showMask()" id="address" value="任务地址">
+			        <input type="text" name="address" id="fullname">
 			        <label for="fullname">约定交易地址：</label>
 			        <input type="text" name="fullname" id="end_address" value=""> 
 			      </div>
