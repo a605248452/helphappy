@@ -7,5 +7,5 @@ return array(
     'password'=>'123456',
     'charset'=>'utf8',
     'port' => 3306,
-    'prefix' => ''
+    'prefix' => 'b_'
 );
