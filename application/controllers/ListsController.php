@@ -28,9 +28,14 @@ class ListsController extends \core\imooc
 		$data['s_end_address']=	post('end_address');
 		$data['s_mission'] =	post('mission');
 		$data['s_finish'] =		post('finish');
-		// print_r($data);die;
 		$lists = new listsModel();
 		$bool = $lists->add_lists($data);
 		var_dump($bool);
+	}
+
+	//接单首页
+	public function receive()
+	{
+
 	}
 }

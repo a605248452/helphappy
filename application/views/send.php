@@ -42,24 +42,24 @@
 		</header>
 		<div class="ui-content" data-role="content">
 			 <div data-role="main" class="ui-content">
-			    <form method="post" action="{{host}}lists/add_lists" data-ajax="false">
+			    <form method="post" action="{{host}}lists/add_lists" data-ajax="false" onsubmit="return check_submit()">
 			      <div class="ui-field-contain">
 			        <label for="fullname">标题：</label>
-			        <input type="text" name="title" id="fullname"> 
+			        <input type="text" name="title" id="title" onblur="check_title(this)">
 			        <label for="fullname">详情：</label>
-			        <textarea name="content" id="" cols="30" rows="10"></textarea>   
+			        <textarea name="content" id="content" onblur="check_content(this)" cols="30" rows="10"></textarea>
 			        <label for="fullname">个人联系方式</label>
-			        <input type="text" name="call" id="fullname"> 
+			        <input type="text" name="call" id="call"onmousedown="check_call(this)" onkeyup="check_call(this)">
 			        <label for="bday">结束时间：</label>
-			        <input type="date" name="end_time" id="bday">
+			        <input type="datetime" name="end_time" id="end_time" onblur="check_end_time()">
 					<label for="fullname">本单金额：</label>
-			        <input type="text" name="list_money" id="fullname"> 
+			        <input type="text" name="list_money" id="list_money" onblur="check_list_money()">
 			        <label for="fullname">标违约金额：</label>
-			        <input type="text" name="violate_money" id="fullname"> 
+			        <input type="text" name="violate_money" id="violate_money" onblur="check_violate_money()">
 			        <input type="button" name="fullname" class="showMask" status="0" value="任务地址">
-			        <input type="text" name="address" id="address" readOnly="true">
+			        <input type="text" name="address" id="address" readOnly="true" onblur="check_address()">
 			        <input type="button" name="fullname" class="showMask" status="1" value="约定交易地址">
-			        <input type="text" name="end_address" id="end_address" readOnly="true"> 
+			        <input type="text" name="end_address" id="end_address" readOnly="true" onblur="check_end_address()">
 			        <input type="hidden" name="mission" id="mission">
 			        <input type="hidden" name="finish" id="finish">
 			      </div>
@@ -77,23 +77,6 @@
 					//location.href="{{host}}public/touzi.html?id=1";
 				})
    		</script>
-   		<script>
-   			//定位当前位置
-   // 			$(function(){
-			//   if (navigator.geolocation)
-			//     {
-			//     navigator.geolocation.getCurrentPosition(showPosition);
-			//     }
-			//   else{x.innerHTML="Geolocation is not supported by this browser.";}
-
-			// })
-			// function showPosition(position)
-			//   {
-			//           $.get('http://api.map.baidu.com/geocoder/v2/?ak=ERtymnt2XAAWdaDdLGE60jqk0pm4Q4kT&callback=renderReverse&location='+position.coords.latitude+','+position.coords.longitude+'&output=json&pois=1',function(msg){
-			//           	$("#address").val(msg.result.formatted_address)
-			//           },'jsonp')
-			//   }
-   		</script>
 		<script>
 			$("#end_address").click(function(){
 
@@ -102,10 +85,6 @@
 		<pre class="html" name="code"><script type="text/javascript">     
 			//定义status，如果0则任务地址，如果1交易完成地址
 			var status;
-			//定义任务地址的经纬度
-			var mission;
-			//定义交易完成地址的经纬度
-			var finish;
 		    //兼容火狐、IE8   
 		    //显示遮罩层 
 		    $(".showMask").click(function(){
@@ -173,6 +152,124 @@
 			$("#btn").click(function(){
 
 			})
+		</script>
+		<script>
+			//验证标题
+			function check_title(title)
+			{
+				var title = document.getElementById('title');
+				if(title.value=='')
+				{
+					title.style.border="1px solid red";
+					return false;
+				}else{
+					title.style.border="1px solid green";
+					return true;
+				}
+			}
+			//验证内容
+			function check_content(content)
+			{
+				var content = document.getElementById('content');
+				if(content.value=='')
+				{
+					content.style.border="1px solid red";
+					return false;
+				}else{
+					content.style.border="1px solid green";
+					return true;
+				}
+			}
+			//验证手机号
+			function check_call(call)
+			{
+				var call = document.getElementById('call');
+				var reg_call = /^1(3|5|7|8)\d{9}$/
+				if(!reg_call.test(call.value))
+				{
+					call.style.border="1px solid red";
+					return false;
+				}else{
+					call.style.border="1px solid green";
+					return true;
+				}
+			}
+			//时间判断
+			function check_end_time(end_time)
+			{
+				var end_time = document.getElementById('end_time');
+				if(end_time.value=='')
+				{
+					end_time.style.border="1px solid red";
+					return false;
+				}else{
+					end_time.style.border="1px solid green";
+					return true;
+				}
+			}
+			//时间判断
+			function check_list_money(list_money)
+			{
+				var list_money = document.getElementById('list_money');
+				var reg_list_money = /^\d{1,4}$/
+				if(!reg_list_money.test(list_money.value))
+				{
+					list_money.style.border="1px solid red";
+					return false;
+				}else{
+					list_money.style.border="1px solid green";
+					return true;
+				}
+			}
+			//时间判断
+			function check_violate_money(violate_money)
+			{
+				var violate_money = document.getElementById('violate_money');
+				var reg_violate_money = /^\d{1,4}$/
+				if(!reg_violate_money.test(violate_money.value))
+				{
+					violate_money.style.border="1px solid red";
+					return false;
+				}else{
+					violate_money.style.border="1px solid green";
+					return true;
+				}
+			}
+			//任务地址判断
+			function check_address(address)
+			{
+				var address = document.getElementById('address');
+				if(address.value=='')
+				{
+					address.style.border="1px solid red";
+					return false;
+				}else{
+					address.style.border="1px solid green";
+					return true;
+				}
+			}
+			//约定交易地址判断
+			function check_end_address(end_address)
+			{
+				var end_address = document.getElementById('end_address');
+				if(end_address.value=='')
+				{
+					end_address.style.border="1px solid red";
+					return false;
+				}else{
+					end_address.style.border="1px solid green";
+					return true;
+				}
+			}
+			function check_submit()
+			{
+				if(check_title()&check_content()&check_call()&check_address()&check_end_address()&check_end_time()&check_list_money()&check_violate_money())
+				{
+					return true;
+				}else{
+					return false;
+				}
+			}
 		</script>
 	</div>
 	
