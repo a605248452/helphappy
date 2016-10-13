@@ -28,7 +28,7 @@
 	<div class="loading"><img src="{{host}}public/images/ajax-loader.gif"/></div>
 	<!-- 遮罩层 -->
 	<div id="mask" class="mask" style="display:none;">
-		<div id="allmap" onclick="hideMask()"></div>
+		<div id="allmap"></div>
 	</div>
 	<div data-role="page" class="touzi" id="touzi">
 		<!--jqmb需要把所以东西放在page div内-->
@@ -148,9 +148,11 @@
 							{
 								$("#mission").val(e.point.lng + ", " + e.point.lat)
 								$("#address").val(msg.result.formatted_address)
+								$("#mask").hide();
 							}else{
 								$("#finish").val(e.point.lng + ", " + e.point.lat)
 								$("#end_address").val(msg.result.formatted_address)
+								$("#mask").hide();
 							}
 						},'jsonp')
 					});
