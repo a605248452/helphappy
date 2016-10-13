@@ -51,7 +51,7 @@
 			        <label for="fullname">个人联系方式</label>
 			        <input type="text" name="call" id="call"onmousedown="check_call(this)" onkeyup="check_call(this)">
 			        <label for="bday">结束时间：</label>
-			        <input type="datetime" name="end_time" id="end_time" onblur="check_end_time()">
+			        <input type="datetime" name="end_time" id="end_time" onblur="check_end_time()" class="sang_Calender">
 					<label for="fullname">本单金额：</label>
 			        <input type="text" name="list_money" id="list_money" onblur="check_list_money()">
 			        <label for="fullname">标违约金额：</label>
@@ -70,6 +70,7 @@
 		</div>
 		<script src="{{host}}public/js/jquery.min.js"></script>
    		<script src="{{host}}public/js/jquery.mobile-1.4.5.min.js"></script>
+   		<script type="text/javascript" src="{{host}}public/js/datetime.js"></script>
    		<script type="text/javascript">
    			$(window).load(function(){
 					$(".loading").fadeOut();
