@@ -36,7 +36,7 @@
    		 <link rel="stylesheet" href="{{host}}public/css/style.css"/>
    		 
    		<!--jqmb需要把所以东西放在page div内--> 
-		<header data-role="header" data-position="fixed">
+		<header data-role="header" data-position="fixed" data-tap-toggle="false">
 			<a href="{{host}}public/#" data-rel="back" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a> 
 			<h3>发单</h3>
 		</header>
@@ -50,8 +50,6 @@
 			        <textarea name="content" id="content" onblur="check_content(this)" cols="30" rows="10"></textarea>
 			        <label for="fullname">个人联系方式</label>
 			        <input type="text" name="call" id="call"onmousedown="check_call(this)" onkeyup="check_call(this)">
-			        <label for="bday">结束时间：</label>
-			        <input type="datetime" name="end_time" id="end_time" onblur="check_end_time()" class="sang_Calender">
 					<label for="fullname">本单金额：</label>
 			        <input type="text" name="list_money" id="list_money" onblur="check_list_money()">
 			        <label for="fullname">标违约金额：</label>
@@ -60,6 +58,8 @@
 			        <input type="text" name="address" id="address" readOnly="true" onblur="check_address()">
 			        <input type="button" name="fullname" class="showMask" status="1" value="约定交易地址">
 			        <input type="text" name="end_address" id="end_address" readOnly="true" onblur="check_end_address()">
+			        <label for="bday">结束时间：</label>
+			        <input type="datetime" name="end_time" id="end_time" onblur="check_end_time()" class="sang_Calender">
 			        <input type="hidden" name="mission" id="mission">
 			        <input type="hidden" name="finish" id="finish">
 			      </div>

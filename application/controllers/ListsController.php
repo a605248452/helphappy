@@ -36,6 +36,6 @@ class ListsController extends \core\imooc
 	//接单首页
 	public function receive()
 	{
-
+		$this->display('receive.php');
 	}
 }
