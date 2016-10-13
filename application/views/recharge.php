@@ -18,7 +18,7 @@
         <h3>充值</h3>
     </header>
     <div class="ui-content" data-role="content">
-        <form id="form1" action="{{host}}/Property/recharge_ac" method="post" data-ajax="false">
+        <form id="form1" action="{{host}}Property/recharge_ac" method="post" data-ajax="false">
         <ul class="tibox">
             <li>
                 <label>充值金额：</label>
