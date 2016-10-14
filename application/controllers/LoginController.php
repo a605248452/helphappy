@@ -29,7 +29,6 @@ class LoginController extends \core\imooc
         $login = $model->where("user", ["u_name" => "$name", "u_pwd" => "$pwd"]);
 //         var_dump($login);die;
         if ($login) {
-            session_start();
             $_SESSION['id']=$login[0]['u_id'];
            jump('index/index');
         } else {
