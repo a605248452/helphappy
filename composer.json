@@ -10,8 +10,7 @@
     "filp/whoops":"*",
     "symfony/var-dumper":"*",
     "catfan/medoo":"*",
-    "twig/twig":"*",
-    "paypal/rest-api-sdk-php" : "1.5.1"
+    "twig/twig":"*"
   },
   "repositories": {
     "packagist": {
