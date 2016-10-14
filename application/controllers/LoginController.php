@@ -26,7 +26,7 @@ class LoginController extends \core\imooc
         $pwd = MD5(post('u_pwd'));
 //       echo  $name,$pwd;die;
         $model = new userModel();
-        $login = $model->where("b_user", ["u_name" => "$name", "u_pwd" => "$pwd"]);
+        $login = $model->where("user", ["u_name" => "$name", "u_pwd" => "$pwd"]);
 //         var_dump($login);die;
         if ($login) {
             session_start();
@@ -58,7 +58,7 @@ class LoginController extends \core\imooc
         $phone = post('phone');
         $number=post('number');
         $model = new userModel();
-        $add = $model->add('b_user_info', ['u_name' => $name, 'nickname' => $nickname, 'u_pwd' => $pwd, 'email' => $email, 'phone' => $phone]);
+        $add = $model->add('user_info', ['u_name' => $name, 'nickname' => $nickname, 'u_pwd' => $pwd, 'email' => $email, 'phone' => $phone]);
           if ($add) {
               jump('Login/login');
           }
@@ -70,7 +70,7 @@ class LoginController extends \core\imooc
     public function only(){
         $name=post('name');
         $model=new userModel();
-        $one=$model->getone('b_user',['u_name'=>$name]);
+        $one=$model->getone('user',['u_name'=>$name]);
         if($one==true){
             echo 1;
         }
