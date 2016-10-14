@@ -62,4 +62,32 @@ class userInfoModel extends model
             return false;
         }
     }
+
+    /**
+     * @param $u_id int 用户ID
+     * @return array 可用余额
+     */
+    public function getBalance($u_id)
+    {
+        return $this->get($this->table,'balance',['u_id'=>$u_id]);
+    }
+
+    /**
+     * @param $u_id int 用户ID
+     * @param $paynum int 提现数量
+     * @return bool 提现成功或失败;
+     */
+    public function cash($u_id,$balance)
+    {
+        if(!is_numeric($u_id) || !is_numeric($balance)) {
+            return false;
+        }
+        $res = $this->update($this->table, ['balance[-]' => $balance, 'lastpaydate' => date('Y-m-d', time())], ['u_id' => $u_id]);
+        if ($res !== false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
