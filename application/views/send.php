@@ -113,6 +113,7 @@
 				// 百度地图API功能
 				function showPosition(position)
 				{
+					// alert(position.coords.longitude)
 					var map = new BMap.Map("allmap");
 					map.centerAndZoom(new BMap.Point(position.coords.longitude,position.coords.latitude),8);
 					setTimeout(function(){
@@ -126,11 +127,11 @@
 						$.get('http://api.map.baidu.com/geocoder/v2/?ak=ERtymnt2XAAWdaDdLGE60jqk0pm4Q4kT&callback=renderReverse&location='+e.point.lat+','+e.point.lng+'&output=json&pois=1',function(msg){
 							if(status==0)
 							{
-								$("#mission").val(e.point.lng + ", " + e.point.lat)
+								$("#mission").val(e.point.lng + "," + e.point.lat)
 								$("#address").val(msg.result.formatted_address)
 								$("#mask").hide();
 							}else{
-								$("#finish").val(e.point.lng + ", " + e.point.lat)
+								$("#finish").val(e.point.lng + "," + e.point.lat)
 								$("#end_address").val(msg.result.formatted_address)
 								$("#mask").hide();
 							}
@@ -143,7 +144,7 @@
 							var mk = new BMap.Marker(r.point);
 							map.addOverlay(mk);
 							map.panTo(r.point);
-							//alert('您的位置：'+r.point.lng+','+r.point.lat);
+							alert('您的位置：'+r.point.lng+','+r.point.lat);
 						}
 						else {
 							alert('failed'+this.getStatus());
