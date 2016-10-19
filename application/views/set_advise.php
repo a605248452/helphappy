@@ -4,11 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>赚不停</title>
-	<link rel="stylesheet" type="text/css" href="public/css/slick.css"/>
-    <link rel="stylesheet" href="public/css/jquery.mobile-1.4.5.min.css"/>
-    <link rel="stylesheet" href="public/css/style.css"/>
-    <script src="public/js/jquery.min.js"></script>
-    <script src="public/js/jquery.mobile-1.4.5.min.js"></script></head>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+   		 <link rel="stylesheet" href="css/style.css"/>
+</head>
 <body>
 	<div class="loading"><img src="images/ajax-loader.gif"/></div>
 	<div data-role="page" class="touzi yijian" id="yijian">
