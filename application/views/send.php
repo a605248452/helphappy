@@ -83,7 +83,7 @@
 
 			})
 		</script>
-		<pre class="html" name="code"><script type="text/javascript">     
+		<script type="text/javascript">
 			//定义status，如果0则任务地址，如果1交易完成地址
 			var status;
 		    //兼容火狐、IE8   
