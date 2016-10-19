@@ -16,36 +16,52 @@
         <h3>登陆</h3>
     </header>
     <div class="ui-content"  data-role="content">
-        <form  action="{{host}}login/logined"   method="post" target="_blank">
+        <form  action="{{host}}login/logined"   method="post" data-ajax="false">
             <ul>
                 <li>
                     <label>用户名：</label>
-                    <input type="text" name="name"  placeholder="请填写用户名" data-role="none"/>
+                    <input type="text" name="name" id="na" required=""  placeholder="请填写用户名" data-role="none"/>
                 </li>
                 <li>
                     <label>密码：</label>
-                    <input type="password" name="u_pwd" id="pwd" placeholder="请填写密码" data-role="none"/>
+                    <input type="password" name="u_pwd" id="pwd" required="" placeholder="请填写密码" data-role="none"/>
                 </li>
             </ul>
             <input type="submit" id="sub"   value="登陆" data-role="none"/>
-            <p style="text-align: center">没有账号? <a href="{{host}}login/reg">立即注册</a></p>
+            <p style="text-align: center">没有账号? <a href="{{host}}login/reg" data-ajax="false">立即注册</a></p>
         </form>
     </div>
     <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js" ></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
-<!--    <script>-->
-<!--        $(function(){-->
-<!--            $("#sub").click(function(){-->
-<!--                var name=$("#name").val();-->
-<!--                var pwd=$("#pwd").val();-->
-<!--                //alert(name);-->
-<!--                $.post("{{host}}login/logined",{name:name,pwd:pwd},function(log){-->
-<!--                    alert(log);-->
-<!--                })-->
-<!--            })-->
-<!--        })-->
-<!---->
-<!--    </script>-->
+    <script>
+        $(function(){
+            //用户名
+            $("#na").blur(function() {
+                var name1=/^[a-z]{6,10}$/i;
+                var name=$(this).val();
+                if(!name1.test(name)){
+                    this.style.border="1px solid red";
+                    return false;
+                }else{
+                    this.style.border="1px solid green";
+                    return true;
+                }
+            });
+            //验证密码
+            $("#pwd").blur(function() {
+                var pwd = $(this).val();
+                var pwd1=/^[0-9]{6,10}$/;
+                if(!pwd1.test(pwd)){
+                    this.style.border="1px solid red";
+                    return false;
+                }else{
+                    this.style.border="1px solid green";
+                    return true;
+                }
+            });
+        })
+    </script>
 </div>
 </body>
 </html>

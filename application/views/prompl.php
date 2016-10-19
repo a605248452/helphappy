@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>赚不停</title>
+    <title>帮帮乐</title>
     <link rel="stylesheet" href="{{host}}public/css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="{{host}}public/css/style.css"/>
 

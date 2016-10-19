@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>赚不停</title>
+    <title>帮帮乐</title>
      <link rel="stylesheet" type="text/css" href="{{host}}public/css/slick.css"/>
     <link rel="stylesheet" href="{{host}}public/css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="{{host}}public/css/style.css"/>
@@ -14,7 +14,7 @@
 	<div class="loading"><img src="{{host}}public/images/ajax-loader.gif"/></div>
 	<div data-role="page" class="index" id="index">
 		<header data-role="header">
-			<h3>赚不停</h3>
+			<h3>帮帮乐</h3>
 		</header>
 		<div class="ui-content" data-role="content"> 
 			<ul class="slick">
