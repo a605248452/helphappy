@@ -15,6 +15,13 @@ class ListsController extends \core\imooc
 	//发单信息添加入库
 	public function add_lists()
 	{
+		$little='';
+		for($i=0;$i<2;$i++)
+		{
+			$little=$little.chr(rand(97,122));
+		}
+		//生成订单随机密码
+		$pwd = $little.rand(1000,9999);
 		//经纬度拆分
 		$s_mission = explode(',',post('mission'));
 		$s_finish  = explode(',',post('finish'));
@@ -35,6 +42,7 @@ class ListsController extends \core\imooc
 		$data['s_m_lat'] =		$s_mission[1];
 		$data['s_f_lng'] =		$s_finish[0];
 		$data['s_f_lat'] =		$s_finish[1];
+		$data['s_pwd'] =		$pwd;
 		$lists = new listsModel();
 		$bool = $lists->add_lists($data);
 		var_dump($bool);
@@ -140,6 +148,7 @@ class ListsController extends \core\imooc
 		$s=2*asin(sqrt(pow(sin($a/2),2)+cos($radLat1)*cos($radLat2)*pow(sin($b/2),2)))*6378.137*1000;
 		$distance = substr($s,0,strpos($s,'.'));
 		// echo $distance;die;
+		// echo $distance;die;
 		if($distance>1500)
 		{
 			echo '1';die;
@@ -148,8 +157,8 @@ class ListsController extends \core\imooc
 			$r_id = 2;
 			//接单人恢复违约金额
 			$lists = new listsModel();
-			$data = $lists->receive_money($id,$r_id);
-			if($data)
+			$bool = $lists->receive_money($id,$r_id);
+			if($bool)
 			{
 				echo '0';
 			}else{
@@ -161,8 +170,15 @@ class ListsController extends \core\imooc
 	//完成订单确认密码
 	public function finish()
 	{
-		$s_id = post('s_id');
-		$pwd  = post('ipwd');
-		echo $s_id,$pwd;
+		$s_id = get('s_id');
+		$pwd  = get('pwd');
+		$lists = new listsModel();
+		$bool = $lists->check_pwd($s_id,$pwd);
+		if($bool)
+		{
+			echo '1';
+		}else{
+			echo '0';
+		}
 	}
 }

@@ -29,11 +29,12 @@
 				  		<input type="button" value="输入密码" id="pwd">
 				  	</div>
 				  	<div id="sn" style="display:none">
-					  	<form action="{{host}}lists/finish" method="post">
-					  		<input type="hidden" value="{{ id }}" name="s_id" >
-					  		<input type="text" id="ipwd" name="ipwd">
-					  		<input type="button" value="提交">
-					  	</form>
+				  		<input type="hidden" value="{{ id }}" id="s_id">
+				  		<input type="text" id="ipwd">
+				  		<input type="button" value="提交" id="sub">
+				  	</div>
+				  	<div id="finish" style="display:none">
+				  		<input type="button" value="订单已完成">
 				  	</div>
 				  </div>
 				  <div id="allmap" style="display:none"></div>
@@ -68,25 +69,39 @@
 				var id = $("#id").attr('ids')
 				$.get("{{host}}lists/receive_details/id/"+id,function(msg){
 					//如果以到达任务地址则删除到达任务地址按钮
-					if(msg.s_type>=3)
+					if(msg.s_type==4)
 					{
+						$("#finish").show()
 						$("#addr").remove()
-					}else{
 						$("#npwd").hide()
-					}
-					var table = '<tr><td>发单人</td><td>：'+msg.u_name+'</td></tr><tr><td>标题</td><td>'+msg.s_title+'</td></tr><tr><td>详细信息</td><td>'+msg.s_content+'</td></tr><tr><td>本单可得金额</td><td>'+msg.s_list_money+'￥</td></tr><tr><td>违约金额</td><td>'+msg.s_violate_money+'￥</td></tr><tr><td>发单人联系方式</td><td>'+msg.s_call+'</td></tr><tr><td>任务地址</td><td>'+msg.s_s_address+'</td></tr><tr><td>约定交易地点</td><td>'+msg.s_s_end_address+'</td></tr><tr><td>订单开始时间</td><td>'+msg.s_time+'</td></tr><tr><td>订单结束时间</td><td>'+msg.s_end_time+'</td></tr>{% if '+msg.s_type+'>2 %}<tr><td>任务地点状态</td><td>已成功到达任务地点</td></tr> {% endif %}';
+						var table = '<tr><td>发单人</td><td>：'+msg.u_name+'</td></tr><tr><td>标题</td><td>'+msg.s_title+'</td></tr><tr><td>详细信息</td><td>'+msg.s_content+'</td></tr><tr><td>本单可得金额</td><td>'+msg.s_list_money+'￥</td></tr><tr><td>违约金额</td><td>'+msg.s_violate_money+'￥</td></tr><tr><td>发单人联系方式</td><td>'+msg.s_call+'</td></tr><tr><td>任务地址</td><td>'+msg.s_s_address+'</td></tr><tr><td>约定交易地点</td><td>'+msg.s_s_end_address+'</td></tr><tr><td>订单开始时间</td><td>'+msg.s_time+'</td></tr><tr><td>订单结束时间</td><td>'+msg.s_end_time+'</td></tr>{% if '+msg.s_type+'>2 %}<tr><td>任务地点状态</td><td>已成功到达任务地点</td></tr> {% endif %}';
 
-					$("#table").append(table)
+						$("#table").append(table)
+					}else{
+						if(msg.s_type==3)
+						{
+							$("#addr").remove()
+							
+						}else{
+							$("#npwd").hide()
+						}
+						var table = '<tr><td>发单人</td><td>：'+msg.u_name+'</td></tr><tr><td>标题</td><td>'+msg.s_title+'</td></tr><tr><td>详细信息</td><td>'+msg.s_content+'</td></tr><tr><td>本单可得金额</td><td>'+msg.s_list_money+'￥</td></tr><tr><td>违约金额</td><td>'+msg.s_violate_money+'￥</td></tr><tr><td>发单人联系方式</td><td>'+msg.s_call+'</td></tr><tr><td>任务地址</td><td>'+msg.s_s_address+'</td></tr><tr><td>约定交易地点</td><td>'+msg.s_s_end_address+'</td></tr><tr><td>订单开始时间</td><td>'+msg.s_time+'</td></tr><tr><td>订单结束时间</td><td>'+msg.s_end_time+'</td></tr>{% if '+msg.s_type+'>2 %}<tr><td>任务地点状态</td><td>已成功到达任务地点</td></tr> {% endif %}';
+
+						$("#table").append(table)
+					}
+					
 				},'json')
 
-				//接单
+				//是否到达任务地点
 				$("#addr").click(function(){
 					$.get('{{host}}lists/address/id/'+id+'/lng/'+lng+'/lat/'+lat,function(msg){
 						if(msg=='0')
 						{
+							alert('已到达')
+							$("#addr").remove()
 							$("#npwd").show()
 						}else{
-							alert('余额不足')
+							alert('未到达指定任务地点')
 						}
 					})
 				})
@@ -94,6 +109,24 @@
 				//输入密码
 				$("#pwd").click(function(){
 					$("#sn").show()
+				})
+
+				//验证密码
+				$("#sub").click(function(){
+					var pwd = $("#ipwd").val()
+					var s_id= $("#s_id").val()
+					$.get('{{host}}lists/finish/s_id/'+s_id+'/pwd/'+pwd,function(msg){
+						// alert(msg)
+						if(msg=='1')
+						{
+							$("#sn").hide()
+							$("#pwd").remove()
+							$("#finish").show()
+							alert('订单已完成')
+						}else{
+							alert('密码错误')
+						}
+					})
 				})
 			})
 		</script>

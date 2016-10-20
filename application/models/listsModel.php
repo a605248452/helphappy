@@ -17,7 +17,7 @@ class listsModel extends model
     //订单列表
     public function lists($u_id)
     {
-    	return $this->select($this->table,["[><]user"=>["u_id"=>"open_id"]],['s_id','send.u_id','s_time','s_m_lng','s_m_lat','s_violate_money','s_title','u_name','star_num'],["send.u_id[!]"=>$u_id]);
+    	return $this->select($this->table,["[><]user"=>["u_id"=>"open_id"]],['s_id','send.u_id','s_time','s_m_lng','s_m_lat','s_violate_money','s_title','u_name','star_num'],["AND"=>["send.u_id[!]"=>$u_id,"s_type"=>1]]);
     }
 
     //发单订单详情
@@ -58,10 +58,31 @@ class listsModel extends model
         $v_money = $this->get($this->table,['s_violate_money'],['s_id'=>$id]);
         $v_money = $v_money['s_violate_money'];
         //金额恢复
-        $this->update($this->table1,array('buy_credit[+]'=>$v_money),array('u_id'=>$r_id));
+        $bool1 = $this->update($this->table1,array('buy_credit[+]'=>$v_money),array('u_id'=>$r_id));
         //订单状态改变为已到达任务地点
-        $this->update($this->table,['s_type'=>3],['s_id'=>$id]);
+        $bool2 = $this->update($this->table,['s_type'=>3],['s_id'=>$id]);
+        //违约状态改变
+        $bool3 = $this->update($this->table,['s_violate_r'=>1],['s_id'=>$id]);
+        if($bool1 && $bool2 && $bool3)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
 
+    //判断订单完成密码是否正确
+    public function check_pwd($s_id,$pwd)
+    {
+        $pwd1 = $this->get($this->table,'s_pwd',['s_id'=>$s_id]);
+        // echo $pwd1.'---'.md5($pwd);die;
+        if($pwd1!=$pwd)
+        {
+            return false;
+        }else{
+            $this->update($this->table,['s_type'=>4],['s_id'=>$s_id]);
+            return true;
+        }
     }
 
 

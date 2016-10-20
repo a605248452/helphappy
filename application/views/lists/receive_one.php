@@ -43,6 +43,7 @@
 					$.get('{{host}}lists/receive_lists/id/'+id+'/money/'+money,function(msg){
 						if(msg==1)
 						{
+							// alert(msg)
 							location.href="{{host}}lists/lists/id/"+id+"/money/"+money;
 						}else{
 							alert('余额不足');
