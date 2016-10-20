@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>赚不停</title>
+    <title>帮帮乐</title>
 </head>
 
 <!-- 地图样式 -->
@@ -56,8 +56,12 @@
 			        <input type="text" name="violate_money" id="violate_money" onblur="check_violate_money()">
 			        <input type="button" name="fullname" class="showMask" status="0" value="任务地址">
 			        <input type="text" name="address" id="address" readOnly="true" onblur="check_address()">
+			        <label for="fullname">任务详细地址：</label>
+			        <input type="text" name="s_address" id="s_address" onblur="check_s_address()">
 			        <input type="button" name="fullname" class="showMask" status="1" value="约定交易地址">
 			        <input type="text" name="end_address" id="end_address" readOnly="true" onblur="check_end_address()">
+			        <label for="fullname">约定交易详细地址：</label>
+			        <input type="text" name="s_end_address" id="s_end_address" onblur="check_s_end_address()">
 			        <label for="bday">结束时间：</label>
 			        <input type="datetime" name="end_time" id="end_time" onblur="check_end_time()" class="sang_Calender">
 			        <input type="hidden" name="mission" id="mission">
@@ -83,7 +87,8 @@
 
 			})
 		</script>
-		<pre class="html" name="code"><script type="text/javascript">     
+<!--		<pre class="html" name="code">-->
+            <script type="text/javascript">
 			//定义status，如果0则任务地址，如果1交易完成地址
 			var status;
 		    //兼容火狐、IE8   
@@ -98,7 +103,8 @@
 		    function hideMask(){     
 		          
 		        $("#mask").hide();     
-		    }  
+		    }
+
 		</script>  
 		<script>
 			//获取经纬度
@@ -209,7 +215,7 @@
 					return true;
 				}
 			}
-			//时间判断
+			//订单价格判断
 			function check_list_money(list_money)
 			{
 				var list_money = document.getElementById('list_money');
@@ -223,7 +229,7 @@
 					return true;
 				}
 			}
-			//时间判断
+			//违约价格判断
 			function check_violate_money(violate_money)
 			{
 				var violate_money = document.getElementById('violate_money');
@@ -250,6 +256,19 @@
 					return true;
 				}
 			}
+			//任务详细地址
+			function check_s_address(s_address)
+			{
+				var s_address = document.getElementById('s_address');
+				if(s_address.value=='')
+				{
+					s_address.style.border="1px solid red";
+					return false;
+				}else{
+					s_address.style.border="1px solid green";
+					return true;
+				}
+			}
 			//约定交易地址判断
 			function check_end_address(end_address)
 			{
@@ -263,9 +282,22 @@
 					return true;
 				}
 			}
+			//约定交易详细地址判断
+			function check_end_address(s_end_address)
+			{
+				var s_end_address = document.getElementById('s_end_address');
+				if(end_address.value=='')
+				{
+					s_end_address.style.border="1px solid red";
+					return false;
+				}else{
+					s_end_address.style.border="1px solid green";
+					return true;
+				}
+			}
 			function check_submit()
 			{
-				if(check_title()&check_content()&check_call()&check_address()&check_end_address()&check_end_time()&check_list_money()&check_violate_money())
+				if(check_title()&check_content()&check_call()&check_address()&check_s_address()&check_end_address()&check_s_end_address()&check_end_time()&check_list_money()&check_violate_money())
 				{
 					return true;
 				}else{
