@@ -23,7 +23,10 @@ class OrderController extends \core\imooc
 //            echo 0;die;
 //        }
         $model = new model();
-        $fa_list = $model->select("send",[ "[>]user_info" => ["send.r_id" => "user_info.u_id"]],'*',['u_id'=>1]);
+        $fa_list = $model->select("send",[ "[>]user_info" => ["send.r_id" => "u_id"]],'*',['send.u_id'=>2]);
+        foreach ($fa_list as $k => $v) {
+            $fa_list[$k]['s_time'] = date('Y-m-d' ,strtotime( $v['s_time']));
+        }
         echo json_encode($fa_list);
     }
 
@@ -38,7 +41,10 @@ class OrderController extends \core\imooc
 //            echo 0;die;
 //        }
         $model = new model();
-        $list = $model->select("send",[ "[>]user_info" => ["send.u_id" => "user_info.u_id"]],'*',['r_id'=>1]);
+        $list = $model->select("send",[ "[>]user_info" => ["send.u_id" => "u_id"]],'*',['send.r_id'=>2]);
+        foreach($list as $k=>$v) {
+            $list[$k]['s_time'] = date('Y-m-d' ,strtotime($v['s_time']));
+        }
         echo json_encode($list);
     }
 }

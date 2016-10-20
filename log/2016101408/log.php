@@ -1,5 +1,0 @@
-2016-10-14 08:06:32"Controller:Lists       Action:send"
-2016-10-14 08:27:31"Controller:Lists       Action:send"
-2016-10-14 08:57:03"Controller:Lists       Action:send"
-2016-10-14 08:58:01"Controller:Lists       Action:send"
-2016-10-14 08:59:43"Controller:Index       Action:index"

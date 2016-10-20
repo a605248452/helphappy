@@ -32,40 +32,8 @@
             </ul>
         </div>
         <div id="send" >
-            <a href="" style="color: #051b28;">
-                <div style="background-color: #fff;margin-top: 30px;">
-                    <div style="height: 35px;">
-                        <div style="height: 35px;width: 50%;float:left;line-height: 35px;text-indent: 1em">接单人：李智渊</div>
-                        <div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">订单已完成</div>
-                    </div>
-                    <div style="height: 70px; background-color: #f7f7f7">
-                        <div style="height: 70px;width: 65%;float:left;line-height: 70px;font-weight: bold;text-align: center;font-size: 18px;">qwe</div>
-                        <div style="height: 70px;width: 35%;float:left; line-height: 70px;font-weight: bold; font-size: 20px;text-align: center">￥100</div>
-                    </div>
-                    <div style="height: 25px;">
-                        <div style="float: right;text-align:center;width: 40%;height: 25px;line-height:25px;">违约状态：<font color="green">未违约</font></div>
-                        <div style="float: right;text-align:center;width: 60%;height: 25px;line-height:25px; ">订单开始时间：2016-01-01</div>
-                    </div>
-                </div>
-            </a>
         </div>
         <div id="get" style="display: none">
-            <a href="" style="color: #051b28;">
-                <div style="background-color: #fff;margin-top: 30px;">
-                    <div style="height: 35px;">
-                        <div style="height: 35px;width: 50%;float:left;line-height: 35px;text-indent: 1em">发单人：heheh </div>
-                        <div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">任务正在完成中</div>
-                    </div>
-                    <div style="height: 70px; background-color: #f7f7f7">
-                        <div style="height: 70px;width: 65%;float:left;line-height: 70px;font-weight: bold;text-align: center;font-size: 18px;">qwe</div>
-                        <div style="height: 70px;width: 35%;float:left; line-height: 70px;font-weight: bold; font-size: 20px;text-align: center">￥100</div>
-                    </div>
-                    <div style="height: 25px;">
-                        <div style="float: right;text-align:center;width: 40%;height: 25px;line-height:25px;">违约状态：<font color="green">未违约</font></div>
-                        <div style="float: right;text-align:center;width: 60%;height: 25px;line-height:25px; ">订单开始时间：2016-01-01</div>
-                    </div>
-                </div>
-            </a>
         </div>
     </div>
     <script src="{{host}}public/js/jquery.min.js"></script>
@@ -85,24 +53,19 @@
                     v += '<a href="" style="color: #051b28;">\
                         <div style="background-color: #fff;margin-top: 30px;">\
                     <div style="height: 35px;">';
-                    if (data[i].r_id == '') {
+                    if (data[i].r_id == null) {
                         v += '<div style="height: 35px;width: 50%;float:left;line-height: 35px;text-indent: 1em">暂时没有人接单</div>'
                     } else {
                         v += '<div style="height: 35px;width: 50%;float:left;line-height: 35px;text-indent: 1em">接单人：' + data[i].nickname + '</div>'
                     }
-                    switch (data[i].status) {
-                        case 1:
+                    if(data[i].s_type==1) {
                             v += '<div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">任务未被接取</div>'
-                            break;
-                        case 2:
+                    }else if(data[i].s_type==2) {
                             v += '<div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">任务正在完成中</div>'
-                            break
-                        case 3:
+                    }else if(data[i].s_type==3) {
                             v += '<div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">任务已完成</div>'
-                            break
-                        case 4:
+                    }else if(data[i].s_type==4) {
                             v += '<div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">交易结束</div>'
-                            break
                     }
 
                     v += '</div>\
@@ -131,19 +94,14 @@
                         <div style="background-color: #fff;margin-top: 30px;">\
                     <div style="height: 35px;">';
                     v += '<div style="height: 35px;width: 50%;float:left;line-height: 35px;text-indent: 1em">发单人：' + data[i].nickname + '</div>'
-                    switch (data[i].status) {
-                        case 1:
+                   if (data[i].s_type==1) {
                             v += '<div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">任务未被接取</div>'
-                            break;
-                        case 2:
+                    } else if (data[i].s_type == 2) {
                             v += '<div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">任务正在完成中</div>'
-                            break
-                        case 3:
+                    } else if (data[i].s_type == 3) {
                             v += '<div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">任务已完成</div>'
-                            break
-                        case 4:
+                    } else if (data[i].s_type == 4) {
                             v += '<div style="height: 35px;width: 45%;float:left;color:red;text-align: right;line-height: 35px">交易结束</div>'
-                            break
                     }
 
                     v += '</div>\
