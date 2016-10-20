@@ -22,7 +22,7 @@
 		<script src="{{host}}public/statics/grade.js" type="text/javascript"></script> 
 		<div class="ui-content" data-role="content"> 
 <div id="box"> 
-	<h2 align="center">发单评论</h2> 
+	<h2 align="center">接单评论</h2> 
 		<div id="myPoint">
 			<span><h2>总星</h2></span> 
 			<div>
@@ -48,8 +48,8 @@
 			{% endfor%}
 			</table> -->
 			<br>
-		<h3><a href="send">发单评论</a></h3>
-		<h3><a href="lend">接单评论</a></h3>
+		<h3><a href="send">接单评论</a></h3>
+		<h3><a href="lend">发单评论</a></h3>
 		 <script src="{{host}}public/js/jquery.min.js"></script>
      	 <script src="{{host}}public/js/jquery.mobile-1.4.5.min.js"></script>
 	     <script type="text/javascript">
