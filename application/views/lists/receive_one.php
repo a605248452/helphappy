@@ -13,8 +13,9 @@
 <body style="background-color: #f2f2f2;">
 	<div class="loading"><img src="{{host}}public//images/ajax-loader.gif"/></div>
 	<div data-role="page" class="index" id="index">
+
 		<header data-role="header">
-		<a href="/index/index" data-role="button" data-icon="back" id="back">返回</a>
+		<a href="{{host}}lists/receive" data-rel="back" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
 			<h3>赚不停</h3>
 		</header>
 			 <div data-role="main" class="ui-content">
@@ -27,6 +28,13 @@
 				  </div>
 			  </div>
 			</div>
+		<footer data-role="footer" data-position="fixed">  
+			<ul>
+				<li><a href="{{host}}lists/receive"  rel="external">接单</a></li>
+				<li><a href="{{host}}lists/send"  rel="external">发单</a></li>
+				<li><a href="self.html"  rel="external">我的</a></li>
+			</ul>
+		</footer>
 		<script src="{{host}}public//js/slick.min.js" ></script>
 		<script>
 			$(function(){

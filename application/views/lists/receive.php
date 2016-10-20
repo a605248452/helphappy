@@ -14,7 +14,12 @@
 <body style="background-color: #f2f2f2;">
 	<div class="loading"><img src="{{host}}public/images/ajax-loader.gif"/></div>
 	<div data-role="page" class="index" id="index">
-		<header data-role="header">
+			<!--jqmb需要把所以东西放在page div内-->
+		 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+   		 <link rel="stylesheet" href="css/style.css"/>
+		<!--jqmb需要把所以东西放在page div内--> 
+		<header data-role="header" data-position="fixed">
+			<a href="{{host}}index/index" data-rel="back" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a> 
 			<h3>接单</h3>
 		</header>
 		<div class="ui-content" data-role="content"> 
@@ -53,6 +58,13 @@
 			</div>
 			<div id="allmap" style="display:none"></div>
 		</div>
+		<footer data-role="footer" data-position="fixed">  
+			<ul>
+				<li><a href="{{host}}lists/receive"  rel="external">接单</a></li>
+				<li><a href="{{host}}lists/send"  rel="external">发单</a></li>
+				<li><a href="self.html"  rel="external">我的</a></li>
+			</ul>
+		</footer>
 		<script src="{{host}}public/js/slick.min.js" ></script>
 		<script>
 			$(function(){
