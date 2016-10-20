@@ -30,6 +30,7 @@ class LoginController extends \core\imooc
 //         var_dump($login);die;
         if ($login) {
             $_SESSION['id']=$login[0]['u_id'];
+            $_SESSION['name']=$name;
            jump('index/index');
         } else {
             echo "<script>alert('失败');history.go(-1);</script>";
@@ -80,9 +81,10 @@ class LoginController extends \core\imooc
     public function msg(){
             //var_dump($_SERVER);die;
             $tel=post('num');
-        if(preg_match("/^1[34578]{1}\d{9}$/",$tel)){
-
-            $rand=rand(100000,999999);
+        if(!preg_match("/^1[34578]{1}\d{9}$/",$tel)) {
+            exit(1);
+        }
+            $rand=rand(10000,999999);
             $url = "http://www.etuocloud.com/gatetest.action";
             $app_key = 'exdeaxIkNw0vgH1WNbifPpuXe6HICvQN';
             $app_secret = 'bVMnLnUz3KUltEpYLm3nwL5SXmyrEPpHDXff55YJjWdjn5j3f3ny49Y8Ez8zae0d';
@@ -91,18 +93,25 @@ class LoginController extends \core\imooc
             $ecd = new Ecd($url,$app_key,$app_secret,$format);
             //发送验证码短信
             $res= $ecd->send_sms_code("$tel","1",$rand,'');
-            //var_dump($res);die;
-            if($res){
+            $json=json_decode($res,true);
+            //var_dump($json);die;
+            if($json['result']==0){
                 $_SESSION['rand']=$rand;
             }else{
-                echo 0;
+                echo 2;
             }
 
-        }else{
-            echo 0;
+    }
+    /*
+     * 验证短信验证码
+     */
+    public function number(){
+        $number=post('num');
+        $rand=$_SESSION['rand'];
+        echo $rand;
+        if($number!=$rand){
+            echo 1;
         }
-
-
     }
 
 

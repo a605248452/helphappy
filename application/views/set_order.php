@@ -4,48 +4,39 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>赚不停</title>
-    <link rel="stylesheet" type="text/css" href="public/css/slick.css"/>
+    <base href="{{host}}"/>
+     <link rel="stylesheet" type="text/css" href="public/css/slick.css"/>
     <link rel="stylesheet" href="public/css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="public/css/style.css"/>
     <script src="public/js/jquery.min.js"></script>
-    <script src="public/js/jquery.mobile-1.4.5.min.js"></script>
+     <script src="public/js/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body style="background-color: #f2f2f2;">
 	<div class="loading"><img src="public/images/ajax-loader.gif"/></div>
 	<div data-role="page" class="index" id="index">
 		<header data-role="header">
-			<h3>赚不停</h3>
+			<h3>帮帮Le</h3>
 		</header>
-		<div class="ui-content" data-role="content"> 
-			<ul class="slick">
-			    <li><a href="#"><img src="public/images/ban01.png"/></a></li>
-			    <li><a href="#"><img src="public/images/ban02.png"/></a></li>
-			    <li><a href="#"><img src="public/images/ban03.png"/></a></li>
-			    <li><a href="#"><img src="public/images/ban04.png"/></a></li>
-			</ul>
-			<ul class="index-menu">
-				<li>
-					<img src="public/images/icon01.png"/>
-					<p>保险承保</p>
-				</li>
-				<li>
-					<img src="public/images/icon02.png"/>
-					<p>当日计息</p>
-				</li>
-				<li>
-					<img src="public/images/icon03.png"/>
-					<p>续投加息</p>
-				</li>
-			</ul>
-			<dl class="index-year">
-				<a href="month.html" data-transition="slide" data-ajax="false">
-					<dd>
-						<h4>月月盈</h4>
-						<p><small>年化</small>6.0%起</p>
-					</dd>
-					<dt>支持续投，次月起年化收益增加0.1%</dt>
-				</a>
-			</dl>
+		<div class="ui-content" data-role="content">
+
+            <dl class="index-year">
+                <dt>支持续投，次月起年化收益增加0.1%</dt>   </dl>
+                <dd>
+                    <a href="{{host}}set/name"  data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">实名认证<small>*玉嘭</small></a>
+                </dd>
+                <dd>
+                    <a href="{{host}}set/name"  data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">实名认证<small>*玉嘭</small></a>
+                </dd>
+
+
+
+
+
+
+
+
+</div>
+            <div class="ui-content" data-role="content">
 			<dl class="index-year">
 				<a href="month.html" data-transition="slide" data-ajax="false">
 					<dd>
@@ -65,13 +56,6 @@
 				</a>
 			</dl>
 		</div>
-		<footer data-role="footer" data-position="fixed">  
-			<ul>
-				<li><a href="{{host}}lists/receive"  rel="external">接单</a></li>
-				<li><a href="{{host}}lists/send"  rel="external">发单</a></li>
-				<li><a href="self.html"  rel="external">我的</a></li>
-			</ul>
-		</footer>
 		<script src="public/js/slick.min.js" ></script>
 	    <script type="text/javascript">
 	    	$(document).on("pagecreate","#index",function(){
@@ -79,7 +63,7 @@
 						    	dots:true,
 						    	autoplay:true,
 						    	autoplaySpeed:2000,
-						    	arrows:false,
+						    	arrows:false
 						    }); 
 					
 					});
