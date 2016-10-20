@@ -52,9 +52,14 @@ class estimateModel extends model
 	}
 
 
-	// //评价数
-	// public function add($data)
-	// {
-	// 	return $this->insert('estimate',$data);
-	// }
+    /**
+     * 用户星级
+     */
+    public function star($u_id,$star,$table){
+        return $this->update($table,[
+               'star_num'=>$star
+            ],[
+            "u_id"=>$u_id
+            ]);
+    }   
 }

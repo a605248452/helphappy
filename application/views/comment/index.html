@@ -4,9 +4,57 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <title>帮帮乐抽奖</title>
+<script type="text/javascript" src="{{host}}public/js/jquery-1.7.js"></script>
+</head>
+<style type="text/css">
+* { padding: 0; margin: 0; }
+.am-share { font-size: 14px; border-radius: 0; bottom: 0; left: 0; position: fixed; text-align: center; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; }
+.am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
+.am-modal-out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+
+.am-share-title { background-color: #f8f8f8; border-bottom: 1px solid #fff; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #555; font-weight: 400; margin: 0 10px; padding: 10px 0 0; text-align: center; }
+.am-share-title::after { border-bottom: 1px solid #dfdfdf; content: ""; display: block; height: 0; margin-top: 10px; width: 100%; }
+
+.am-share-footer { margin: 10px; }
+.am-share-footer .share_btn { color: #555;  display: block; width: 100%; background-color: #e6e6e6; border: 1px solid #e6e6e6; border-radius: 0; cursor: pointer;  font-size: 16px; font-weight: 400; line-height: 1.2; padding: 0.625em 0; text-align: center; transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s; vertical-align: middle; white-space: nowrap;font-family:"微软雅黑";  }
+
+.am-share-sns { background-color: #f8f8f8; border-radius: 0 0 2px 2px; margin: 0 10px; padding-top: 15px; height:auto; zoom:1; overflow:auto; }
+
+.am-share-sns li { margin-bottom: 15px; display: block; float: left; height: auto;  width: 25%; }
+
+.am-share-sns a { color: #555; display: block; text-decoration:none; }
+.am-share-sns span { display: block; }
+
+.am-share-sns li i { background-position: center 50%; background-repeat: no-repeat; background-size: 36px 36px; background-color: #ccc; color: #fff; display: inline-block; font-size: 18px; height: 36px; line-height: 36px; margin-bottom: 5px; width: 36px; }
+.am-share-sns .share-icon-qq { background-image: url({{host}}public/images/q.png); }
+.am-share-sns .share-icon-weixin { background-image: url({{host}}public/images/weixin.png); }
+.am-share-sns .share-icon-taobao { background-image: url({{host}}public/images/taobao.png); }
+.am-share-sns .share-icon-weibo { background-image: url({{host}}public/images/weibo.png); }
+
+.sharebg { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+.sharebg-active { opacity: 1; display:block; }
+
+</style>
+<body>
+<script type="text/javascript">
+	function toshare(){
+		$(".am-share").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn").click(function(){
+			$(".am-share").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}	
+</script>
 
 <style type="text/css">
 	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;}
@@ -317,13 +365,26 @@ function drawRouletteWheel() {
 			<img class="pointer" src="{{host}}public/images/jt2.png"/>
 		</div>
 	</div>
-	<a href="eventDetails.html" class="more"></a>
+	<a href="#" class="more"></a>
 	<img src="{{host}}public/images/9.png" class="cloud">
 	<img src="{{host}}public/images/10.png" class="cloud2">
 	<img src="{{host}}public/images/11.png" class="cloud3">
 	<div id="mark">
-		<img src="{{host}}public/images/red5.png" class="red-img">
+	<span onClick="toshare()" style="border:dotted 1px #ddd;display:block;width:100px;text-align:center;margin:20px auto 0 auto;cursor:pointer;height:60px;line-height:60px;">
+	<img src="{{host}}public/images/red5.png" class="red-img"></span>
+
+		<a href="lend">/a>
 	</div>
-	
+	<div class="am-share">
+  <h3 class="am-share-title">分享到</h3>
+  <ul class="am-share-sns">
+    <li><a href="../comment/share"> <i class="share-icon-qq"></i> <span>QQ</span> </a> </li>
+    <li><a href="../comment/share"> <i class="share-icon-weixin"></i> <span>微信</span> </a> </li>
+    <li><a href="../comment/share"> <i class="share-icon-taobao"></i> <span>淘宝</span> </a> </li>
+    <li><a href="../comment/share"> <i class="share-icon-weibo"></i> <span>新浪微博</span> </a> </li>
+  </ul>
+  <div class="am-share-footer"><button class="share_btn">取消</button></div>
+</div>
+
 </body>
 </html>

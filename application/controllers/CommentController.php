@@ -30,12 +30,12 @@ class CommentController extends \core\imooc
 		
 		if(empty($_POST)){
 			echo "<script>alert('请先评论 ')</script>";
-    	 	header('refresh:0.1;../comment/show');
+    	 	header('refresh:0.1;show');
 			die;
 		}else{
-			$data['p_id']=2;//评论人
-			$data['b_id']= $_SESSION['id'];//被评论人
-			$data['e_type']=$_POST['pointV2'];//订单类型
+			$data['p_id']=$_SESSION['id'];//评论人
+			$data['b_id']= 3;//被评论人
+			// $data['e_type']=$_POST['pointV2'];//订单类型
 			$data['e_speed']=$_POST['pointV2'];//速度
 			$data['e_fuwu']=$_POST['pointV1'];//服务
 			$data['e_info']=$_POST['pointV3'];//信用
@@ -53,8 +53,8 @@ class CommentController extends \core\imooc
 			echo "<script>alert('日狗了');</script>";
 		}
 
-		}
 	}
+}
 	/**
 	 * [next description]
 	 * @return function [挑转页面]
@@ -91,8 +91,9 @@ class CommentController extends \core\imooc
 		 	$data['level']=floor(array_sum($e_level)/count($e_level));
  			$star=floor(array_sum($e_level)/count($e_level));
  			//用户星级
-		 	$user_model=new \application\models\userModel();
-			$re=$user_model->star($u_id,$star);
+		 	// $user_model=new \application\models\userModel();
+		 	$table='user';
+			$re=$model->star($u_id,$star,$table);
 	        $this->assign('data',$data);
 	        $this->display('comment/send.php');
 		}else{
@@ -125,8 +126,9 @@ class CommentController extends \core\imooc
 		 	$data['info']=ceil(array_sum($e_info)/count($e_info));
 		 	$data['level']=floor(array_sum($e_level)/count($e_level));
 		    $star=floor(array_sum($e_level)/count($e_level));
-		 	$user_model=new \application\models\userModel();
-			$re=$user_model->star($u_id,$star);
+		 	// $user_model=new \application\models\userModel();
+		 	$table='user';
+			$re=$model->star($u_id,$star,$table);
 		 	
 	        $this->assign('data',$data);
 	        $this->display('comment/lend.php');
@@ -138,6 +140,10 @@ class CommentController extends \core\imooc
 		}
 
 	}
+	/**
+	 * [抽奖]
+	 * @return [type] [description]
+	 */
 	public function jiang(){
 		$this->display('comment/index.html');
 	}
@@ -153,5 +159,9 @@ class CommentController extends \core\imooc
  		$star=floor(array_sum($e_level)/count($e_level));
  		$user_model=new \application\models\userModel();
 		$re=$user_model->star($u_id,$star);
+	}
+	public function share(){
+			echo "<script>alert('分享成功');</script>";
+			header('refresh:0.1;../index');
 	}
 }
