@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>赚不停</title>
+    <title>帮帮乐</title>
 </head>
 
 <!-- 地图样式 -->
@@ -87,7 +87,8 @@
 
 			})
 		</script>
-		<pre class="html" name="code"><script type="text/javascript">     
+<!--		<pre class="html" name="code">-->
+            <script type="text/javascript">
 			//定义status，如果0则任务地址，如果1交易完成地址
 			var status;
 		    //兼容火狐、IE8   
@@ -102,7 +103,8 @@
 		    function hideMask(){     
 		          
 		        $("#mask").hide();     
-		    }  
+		    }
+
 		</script>  
 		<script>
 			//获取经纬度

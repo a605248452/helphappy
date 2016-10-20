@@ -39,6 +39,23 @@ class userModel extends model
      */
     public function getone($table,$arr){
         $one=$this->get($table,'*',$arr);
+        //var_dump($one);die;
         return $one;
     }
+    /*
+     * 多表多条件
+     */
+    public function joins($table,$join,$columns='*',$where){
+        $many=$this->select($table, $join, $columns,$where);
+//        var_dump($many);die;
+        return $many;
+    }
+    /*
+     * 修改
+     */
+    public function save($table, $data, $where){
+        $save=$this->update($table, $data, $where);
+        return $save;
+    }
+
 }
