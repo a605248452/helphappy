@@ -40,6 +40,16 @@ class estimateModel extends model
 		    ]
 		]);
 	}
+	/**
+	 * 发单类型
+	 */
+	public function send_type($e_type,$b_id){
+		return $this->update($this->table,[
+               "e_type"=>$e_type
+            ],[
+            	'b_id'=>$b_id
+            ]);
+	}
 
 
 	// //评价数

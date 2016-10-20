@@ -50,7 +50,7 @@ $("#doPoint table tr td span small").each(function(index){
 	var fltint=(flt.toString()).substring(2,(fltln+2));
 	var fltint=fltint > 0 ? fltint : 0;   
 	
-	$("#myPoint img").attr("src","public/statics/star"+integer+".gif");
+	$("#myPoint img").attr("src","../public/statics/star"+integer+".gif");
 	$("#myPoint big").html(integer);
 	$("#myPoint small").html("."+fltint);
 	$("#myPoint em").html(txt0[integer-1]);

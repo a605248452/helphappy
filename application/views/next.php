@@ -29,7 +29,7 @@
 			<center>				
 				<ul>&nbsp;</ul>
 				<ul>&nbsp;</ul>
-				<h3>评论完成，你可以<a href="../" target="_top">返回首页</a>,三秒后可自动跳转到别人对我<a href="send">发单评论</a></h3>
+				<h3>评论完成，你可以<a href="jiang" target="_top">进行抽奖活动</a>,三秒后可自动跳转到别人对我<a href="send">接单评论</a></h3>
 			</center>		
 		</table>
 		 <script src="{{host}}public/js/jquery.min.js"></script>
