@@ -15,11 +15,7 @@
 	<div class="loading"><img src="{{host}}public/images/ajax-loader.gif"/></div>
 	<div data-role="page" class="index" id="index">
 		<header data-role="header">
-<<<<<<< HEAD
-			<h3>帮帮乐</h3>
-=======
 			<h3>接单</h3>
->>>>>>> 305a4543834b6d09700ee100ce1211fa80cdbe4a
 		</header>
 		<div class="ui-content" data-role="content"> 
 		<!-- 自定义样式 -->
@@ -90,7 +86,7 @@
 								var v='';
 								for(var i=0;i<msg.length;i++)
 								{
-									v=v+'<dl class="index-year" ><a href="month.html" data-transition="slide" data-ajax="false"><dd><div style="float:left;width:60%;"><h4 rowspan="2">'+msg[i].s_title+'</h4></div><div style="float:left; width:40%"><p style="float:none"><small>距离您：</small>'+msg[i].distance+'m</p><p style="float:none"><small>用户星级：</small><img src="{{host}}public/images/star1.gif" width="80" alt=""></p></div></dd><dt><font color="#009dd9">李智渊</font>于'+msg[i].s_time+'发布</dt></a></dl>'
+									v=v+'<dl class="index-year" ><a href="{{host}}lists/receive_one/id/'+msg[i].s_id+'/money/'+msg[i].s_violate_money+'" data-transition="slide" data-ajax="false"><dd><div style="float:left;width:60%;"> <h4 rowspan="2">'+msg[i].s_title+'</h4></div><div style="float:left; width:40%"><p style="float:none"><small>距离您：</small>'+msg[i].distance+'m</p><p style="float:none"><small>用户星级：</small><img src="{{host}}public/images/star'+msg[i].star_num+'.gif" width="80" alt=""></p></div></dd><dt><font color="#009dd9">'+msg[i].u_name+'</font>于'+msg[i].s_time+'发布</dt></a></dl>'
 								}
 								$("#content").html(v)
 							},'json')
@@ -109,7 +105,7 @@
 						var v='';
 						for(var i=0;i<msg.length;i++)
 						{
-							v=v+'<dl class="index-year" ><a href="month.html" data-transition="slide" data-ajax="false"><dd><div style="float:left;width:60%;"> <h4 rowspan="2">'+msg[i].s_title+'</h4></div><div style="float:left; width:40%"><p style="float:none"><small>距离您：</small>'+msg[i].distance+'m</p><p style="float:none"><small>用户星级：</small><img src="{{host}}public/images/star1.gif" width="80" alt=""></p></div></dd><dt><font color="#009dd9">李智渊</font>于'+msg[i].s_time+'发布</dt></a></dl>'
+							v=v+'<dl class="index-year" ><a href="{{host}}lists/receive_one/id/'+msg[i].s_id+'/money/'+msg[i].s_violate_money+'" data-transition="slide" data-ajax="false"><dd><div style="float:left;width:60%;"> <h4 rowspan="2">'+msg[i].s_title+'</h4></div><div style="float:left; width:40%"><p style="float:none"><small>距离您：</small>'+msg[i].distance+'m</p><p style="float:none"><small>用户星级：</small><img src="{{host}}public/images/star'+msg[i].star_num+'.gif" width="80" alt=""></p></div></dd><dt><font color="#009dd9">'+msg[i].u_name+'</font>于'+msg[i].s_time+'发布</dt></a></dl>'
 						}
 						$("#content").html(v)
 					},'json')
