@@ -15,11 +15,7 @@
 	<div class="loading"><img src="{{host}}public/images/ajax-loader.gif"/></div>
 	<div data-role="page" class="index" id="index">
 		<header data-role="header">
-<<<<<<< HEAD
-			<h3>帮帮乐</h3>
-=======
 			<h3>接单</h3>
->>>>>>> 305a4543834b6d09700ee100ce1211fa80cdbe4a
 		</header>
 		<div class="ui-content" data-role="content"> 
 		<!-- 自定义样式 -->
