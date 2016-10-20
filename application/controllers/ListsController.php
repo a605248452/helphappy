@@ -109,7 +109,7 @@ class ListsController extends \core\imooc
 	public function receive_lists()
 	{
 		//id，开发完成之后需要修改
-		$r_id = 2;
+		$r_id = $_SESSION['id'];
 		$id=get('id');
 		$v_money = get('money');
 		$lists = new listsModel();
@@ -154,7 +154,7 @@ class ListsController extends \core\imooc
 			echo '1';die;
 		}else{
 			//id，开发完成之后需要修改
-			$r_id = 2;
+			$r_id = $_SESSION['id'];
 			//接单人恢复违约金额
 			$lists = new listsModel();
 			$bool = $lists->receive_money($id,$r_id);

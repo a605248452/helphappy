@@ -10,7 +10,7 @@ class OrderController extends \core\imooc
     //框架首页
     public function orderlist()
     {
-        $this->display('order.php');
+        $this->display('order/order.php');
     }
 
     /**
