@@ -71,6 +71,26 @@ class listsModel extends model
         }
     }
 
+    //发单人恢复违约金额
+    public function send_money($id,$s_id)
+    {
+        //本单违约金额
+        $v_money = $this->get($this->table,['s_violate_money'],['s_id'=>$id]);
+        $v_money = $v_money['s_violate_money'];
+        //金额恢复
+        $bool1 = $this->update($this->table1,array('buy_credit[+]'=>$v_money),array('u_id'=>$s_id));
+        //订单状态改变为已到达任务地点
+        // $bool2 = $this->update($this->table,['s_type'=>3],['s_id'=>$id]);
+        //违约状态改变
+        $bool2 = $this->update($this->table,['s_violate_u'=>1],['s_id'=>$id]);
+        if($bool1 && $bool2)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     //判断订单完成密码是否正确
     public function check_pwd($s_id,$pwd)
     {

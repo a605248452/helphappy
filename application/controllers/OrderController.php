@@ -4,7 +4,7 @@ namespace application\controller;
 
 
 use core\lib\model;
-
+use application\models\listsModel;
 class OrderController extends \core\imooc
 {
     //框架首页
@@ -47,4 +47,67 @@ class OrderController extends \core\imooc
         }
         echo json_encode($list);
     }
+
+    /**
+     * 页面
+     */
+    public function send_one()
+    {
+        $s_id = get('id');
+        $this->assign('s_id',$s_id);
+        $this->display('order/send_one.php');
+    }
+
+    /**
+     * 发单详情
+     */
+    public function send_one_s()
+    {
+        $s_id = get('id');
+        $u_id = $_SESSION['id'];
+        $model = new model();
+        $data = $model->get('send',["[>]user_info" => ["send.u_id" => "u_id"]],'*',['s_id'=>$s_id]);
+        // print_r($model->error());die;
+        echo json_encode($data);
+    }
+
+    /**
+     * 判断发单人位置，算出距离
+     */
+    public function send_address()
+    {
+        $lng = get('lng');
+        $lat = get('lat');
+        $id  = get('id');
+        $lists = new listsModel();
+        $data = $lists->distance_address($id);
+        //将角度转为弧度
+        $radLat1=deg2rad($data['s_m_lat']);//deg2rad()函数将角度转换为弧度
+        $radLat2=deg2rad($lat);
+        $radLng1=deg2rad($data['s_m_lng']);
+        $radLng2=deg2rad($lng);
+        $a=$radLat1-$radLat2;
+        $b=$radLng1-$radLng2;
+        $s=2*asin(sqrt(pow(sin($a/2),2)+cos($radLat1)*cos($radLat2)*pow(sin($b/2),2)))*6378.137*1000;
+        $distance = substr($s,0,strpos($s,'.'));
+        // echo $distance;die;
+        // echo $distance;die;
+        if($distance>150000)
+        {
+            echo '1';die;
+        }else{
+            //id，开发完成之后需要修改
+            $s_id = $_SESSION['id'];
+            //接单人恢复违约金额
+            $lists = new listsModel();
+            $bool = $lists->send_money($id,$s_id);
+            if($bool)
+            {
+                echo '0';
+            }else{
+                echo '1';
+            }
+        }
+    }
+
 }

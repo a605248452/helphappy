@@ -35,8 +35,7 @@
         </div>
         <div id="get" style="display: none">
         </div>
-    </div>
-    <script src="{{host}}public/js/jquery.min.js"></script>
+         <script src="{{host}}public/js/jquery.min.js"></script>
 <!--    <script src="{{host}}public/jQuery.mobile-Tabs/jquery.mobile.tabs.js"></script>-->
     <script src="{{host}}public/js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript">
@@ -50,7 +49,7 @@
             } else {
                 var v = '';
                 for (var i = 0; i < data.length; i++) {
-                    v += '<a href="{{host}}order/one/id/'+data[i].s_id+'" style="color: #051b28;">\
+                    v += '<a href="{{host}}order/send_one/id/'+data[i].s_id+'" style="color: #051b28;">\
                         <div style="background-color: #fff;margin-top: 30px;">\
                     <div style="height: 35px;">';
                     if (data[i].r_id == null) {
@@ -84,10 +83,11 @@
             }
         },'json')
         $.get("{{host}}order/getget",{},function (data) {
+            alert(data)
             if(data==0)
             {
                 alert('请先登录')
-                location.href="{{host}}login/login"
+                // location.href="{{host}}login/login"
             } else {
                 var v = '';
                 for (var i = 0; i < data.length; i++) {
@@ -132,6 +132,7 @@
             }
         })
     </script>
+    </div>
 </div>
 
 </body>

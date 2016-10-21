@@ -108,7 +108,6 @@ class ListsController extends \core\imooc
 	//接单
 	public function receive_lists()
 	{
-		//id，开发完成之后需要修改
 		$r_id = $_SESSION['id'];
 		$id=get('id');
 		$v_money = get('money');
