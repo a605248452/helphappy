@@ -32,7 +32,7 @@
 					<a href="{{host}}order/list" data-transition="slide" data-ajax="false"  class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的订单</a>
 				</dd>
                 <dd>
-                    <a href="{{host}}comment/lend" data-transition="slide" data-ajax="false"  class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的评价</a>
+                    <a href="{{host}}comment/lend" data-transition="slide" data-ajax="false" class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的评价</a>
                 </dd>
 				<dt>
 					<a href="{{host}}set/home" data-ajax="false" class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">设置</a>
