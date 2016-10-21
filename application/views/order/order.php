@@ -45,7 +45,7 @@
         $.get("{{host}}order/getsend",{},function (data) {
             if(data==0)
             {
-                alert("您未登录");
+                window.location.href="{{host}}login/login"
             } else {
                 var v = '';
                 for (var i = 0; i < data.length; i++) {
@@ -83,11 +83,9 @@
             }
         },'json')
         $.get("{{host}}order/getget",{},function (data) {
-            alert(data)
             if(data==0)
             {
-                // alert('请先登录')
-                // location.href="{{host}}login/login"
+                 location.href="{{host}}login/login"
             } else {
                 var v = '';
                 for (var i = 0; i < data.length; i++) {
