@@ -1,5 +1,0 @@
-2016-10-21 08:50:39"Controller:Login       Action:login"
-2016-10-21 08:56:17"Controller:Comment       Action:show"
-2016-10-21 08:57:53"Controller:Comment       Action:jiang"
-2016-10-21 08:59:00"Controller:Index       Action:index"
-2016-10-21 08:59:42"Controller:Index       Action:index"
