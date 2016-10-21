@@ -31,7 +31,7 @@
             <p>{{info.msg}}</p>
         </div>
         {% if info.status == 1 %}
-        <a href="{{host}}lists/receive" data-transition="slide">返回首页</a>
+        <a href="{{host}}index/index" data-transition="slide">返回首页</a>
         {% else %}
         <a href="{{host}}property/cash"  rel="external"  data-transition="slide">重新提现</a>
         {% endif %}

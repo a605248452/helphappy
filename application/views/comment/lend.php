@@ -22,17 +22,23 @@
 		<script src="{{host}}public/statics/grade.js" type="text/javascript"></script> 
 		<div class="ui-content" data-role="content"> 
 <div id="box"> 
-	<h2 align="center">接单评论</h2> 
+	<h2 align="center">发单评论</h2> 
 		<div id="myPoint">
-			<span><big>5</big><small>.0</small></span> 
+			<span><h2>总星</h2></span> 
 			<div>
-				<img src="{{host}}public/statics/star5.gif"/>
-				<em>(一般)</em>
+				<img src="{{host}}public/statics/star{{data.level}}.gif"/>
 			</div>
 		</div> 
 		<div id="doPoint"> 
 			<p>星星评分=(服务+速度+信用)/3</p> 
-	 		<table  cellspacing="0" cellpadding="0" border="0">
+			<li>
+				<ul>服务:<img src="../public/statics/star{{data.fuwu}}.gif" alt=""></ul>   
+				<ul>速度:<img src="../public/statics/star{{data.speed}}.gif" alt=""></ul>
+				<ul>信用:<img src="../public/statics/star{{data.info}}.gif" alt=""></ul>
+			</li>
+			
+
+	 		<!-- <table  cellspacing="0" cellpadding="0" border="0">
 			{% for val in data %}
 			<li>
 				<ul><img src="../public/statics/star{{val.e_fuwu}}.gif" alt=""></ul>   
@@ -40,7 +46,8 @@
 				<ul><img src="../public/statics/star{{val.e_info}}.gif" alt=""></ul>
 			</li>
 			{% endfor%}
-		</table>
+			</table> -->
+			<br>
 		<h3><a href="send">发单评论</a></h3>
 		<h3><a href="lend">接单评论</a></h3>
 		 <script src="{{host}}public/js/jquery.min.js"></script>
@@ -50,6 +57,7 @@
 						$(".loading").fadeOut();
 					})
 	    </script>
+
 	</div>
 </body>
-</html>
+</html

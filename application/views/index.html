@@ -67,9 +67,9 @@
 		</div>
 		<footer data-role="footer" data-position="fixed">  
 			<ul>
-				<li><a href="index.html"  rel="external">接单</a></li>
-				<li><a href="self.html"  rel="external">发单</a></li>
-				<li><a href="{{host}}index/self"  rel="external">我的</a></li>
+				<li><a href="{{host}}lists/receive"  rel="external">接单</a></li>
+				<li><a href="{{host}}lists/send"  rel="external">发单</a></li>
+				<li><a href="javascript:void(0)" id='center'  rel="external">我的</a></li>
 			</ul>
 		</footer>
 		<script src="public/js/slick.min.js" ></script>
@@ -86,6 +86,9 @@
 					$(window).load(function(){
 						$(".loading").fadeOut()
 					})
+         $(document).on("click",'#center',function(){
+                alert('1')
+             })
 	    </script>
 	</div>
 </body>
