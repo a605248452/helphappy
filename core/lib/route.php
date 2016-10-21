@@ -24,12 +24,11 @@ class route
 		self::$hosts = $host;
 		$http = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 		$request = str_replace($host,'/',$http);
-		
+		if(strstr($request,'?')) {
+				$request = str_replace(strstr($request,'?'),'',$request);
+			}
 		if($request != '/') {
 			$path = $request;
-			if(strstr($path,'?')) {
-				$path = str_replace(strstr($path,'?'),'',$path);
-			}
 			$patharr = explode('/', trim($path, '/'));
 			if(isset($patharr[0])){
 				$this->controller = $patharr[0];
