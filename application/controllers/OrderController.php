@@ -82,9 +82,9 @@ class OrderController extends \core\imooc
         $lists = new listsModel();
         $data = $lists->distance_address($id);
         //将角度转为弧度
-        $radLat1=deg2rad($data['s_m_lat']);//deg2rad()函数将角度转换为弧度
+        $radLat1=deg2rad($data['s_f_lat']);//deg2rad()函数将角度转换为弧度
         $radLat2=deg2rad($lat);
-        $radLng1=deg2rad($data['s_m_lng']);
+        $radLng1=deg2rad($data['s_f_lng']);
         $radLng2=deg2rad($lng);
         $a=$radLat1-$radLat2;
         $b=$radLng1-$radLng2;

@@ -15,6 +15,7 @@ class ListsController extends \core\imooc
 	//发单信息添加入库
 	public function add_lists()
 	{
+		$u_id = $_SESSION['id'];
 		$little='';
 		for($i=0;$i<2;$i++)
 		{
@@ -44,8 +45,15 @@ class ListsController extends \core\imooc
 		$data['s_f_lat'] =		$s_finish[1];
 		$data['s_pwd'] =		$pwd;
 		$lists = new listsModel();
-		$bool = $lists->add_lists($data);
-		var_dump($bool);
+		$bool = $lists->add_lists($data,$u_id);
+		if($bool)
+		{
+			//发布之后跳到订单列表页
+			jump('order/orderlist');
+		}else{
+			//余额不足条充值页
+			header('refresh:2',jump('property/recharge'));
+		}
 	}
 
 	//接单首页

@@ -27,6 +27,9 @@
 			      <div data-role="content" id="dis" style="display:none">
 				  	<input type="button" value="我已到达" id="btn">
 				  </div>
+				  <div data-role="content" id="end_address" style="display:none">
+				  	<input type="button" value="您已到达交易地点">
+				  </div>
 			  </div>
 			  <!-- 百度地图 -->
 			  <div id="allmap" style="display:none"></div>
@@ -47,6 +50,8 @@
 					if(msg.s_violate_u!='1')
 					{
 						$("#dis").show()
+					}else{
+						$("#end_address").show()
 					}
 				},'json')
 
@@ -70,7 +75,13 @@
 
 							//判断距离
 							$.get("{{host}}order/send_address/lat/"+lat+"/lng/"+lng+"/id/"+id,function(msg){
-								alert(msg)
+								if(msg=='0')
+								{
+									$("#dis").hide()
+									$("#end_address").show()
+								}else{
+									alert('未到达指定地点')
+								}
 							})
 						}
 						else {
