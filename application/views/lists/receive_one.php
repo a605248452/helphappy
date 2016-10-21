@@ -26,8 +26,10 @@
 			      <div data-role="content">
 				  	<input type="button" value="接下本单" id="btn">
 				  </div>
+				  <div id="comment">
+				  		
+				  </div>
 			  </div>
-			</div>
 		<footer data-role="footer" data-position="fixed">  
 			<ul>
 				<li><a href="{{host}}lists/receive"  rel="external">接单</a></li>
@@ -74,6 +76,7 @@
 						$(".loading").fadeOut()
 					})
 	    </script>
+	</div>
 	</div>
 </body>
 </html>

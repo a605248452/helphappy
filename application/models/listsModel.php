@@ -111,8 +111,17 @@ class listsModel extends model
         {
             return false;
         }else{
-            $this->update($this->table,['s_type'=>4],['s_id'=>$s_id]);
-            return true;
+            $bool1 = $this->update($this->table,['s_type'=>4],['s_id'=>$s_id]);
+            //增加信誉度
+            $data = $this->get($this->table,['u_id','r_id'],['s_id'=>$s_id]);
+            $bool2 = $this->update($this->table1,['buy_credit[+]' => 5],['u_id' => $u_id]);
+            $bool3 = $this->update($this->table1,['sell_credit[+]' => 5],['u_id' => $u_id]);
+            if($bool1 && $bool2 && $bool3)
+            {
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 

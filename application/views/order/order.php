@@ -49,7 +49,7 @@
             } else {
                 var v = '';
                 for (var i = 0; i < data.length; i++) {
-                    v += '<a href="{{host}}order/send_one/id/'+data[i].s_id+'" style="color: #051b28;">\
+                    v += '<a href="{{host}}order/send_one/id/'+data[i].s_id+'" style="color: #051b28;" data-ajax="false">\
                         <div style="background-color: #fff;margin-top: 30px;">\
                     <div style="height: 35px;">';
                     if (data[i].r_id == null) {
@@ -89,7 +89,7 @@
             } else {
                 var v = '';
                 for (var i = 0; i < data.length; i++) {
-                    v += '<a href="{{host}}lists/receive_one/id/'+data[i].s_id+'" style="color: #051b28;">\
+                    v += '<a href="{{host}}lists/lists/id/'+data[i].s_id+'" style="color: #051b28;" data-ajax="false">\
                         <div style="background-color: #fff;margin-top: 30px;">\
                     <div style="height: 35px;">';
                     v += '<div style="height: 35px;width: 50%;float:left;line-height: 35px;text-indent: 1em">发单人：' + data[i].nickname + '</div>'

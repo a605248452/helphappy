@@ -23,6 +23,8 @@
 			      <div class="ui-field-contain" ids="{{ s_id }}" id="id">
 			    	<table id="table">
 			    	</table>
+			    	<table id="table1">
+			    	</table>
 			      </div>
 			      <div data-role="content" id="dis" style="display:none">
 				  	<input type="button" value="我已到达" id="btn">
@@ -30,9 +32,13 @@
 				  <div data-role="content" id="end_address" style="display:none">
 				  	<input type="button" value="您已到达交易地点">
 				  </div>
+				  <div id="comment" style="display:none">
+			  			<input type="button" value="评论订单" id="comment_receive">
+			  		</div>
 			  </div>
 			  <!-- 百度地图 -->
 			  <div id="allmap" style="display:none"></div>
+			  </div>
 		<footer data-role="footer" data-position="fixed">  
 			<ul>
 				<li><a href="{{host}}lists/receive"  rel="external">接单</a></li>
@@ -43,6 +49,20 @@
 		<script src="{{host}}public//js/slick.min.js" ></script>
 		<script>
 			$(function(){
+				//评论对方
+				$("#comment_receive").click(function(){
+					var s_id = $("#id").attr('ids');
+					location.href="{{host}}comment/show1/s_id/"+s_id
+				})
+				//查看是否评论对方
+				var s_id = $("#id").attr('ids');
+				$.get('{{host}}comment/show3/s_id'+s_id+'/type/1',function(msg){
+					if(msg==0)
+					{
+						$("#comment").show()
+					}
+				},'json')
+
 				var id = $("#id").attr('ids')
 				$.get("{{host}}order/send_one_s/id/"+id,function(msg){
 					var table = '<tr><td>发单人</td><td>：'+msg.nickname+'</td></tr><tr><td>标题</td><td>'+msg.s_title+'</td></tr><tr><td>详细信息</td><td>'+msg.s_content+'</td></tr><tr><td>本单可得金额</td><td>'+msg.s_list_money+'￥</td></tr><tr><td>违约金额</td><td>'+msg.s_violate_money+'￥</td></tr><tr><td>发单人联系方式</td><td>'+msg.s_call+'</td></tr><tr><td>任务地址</td><td>'+msg.s_s_address+'</td></tr><tr><td>约定交易地点</td><td>'+msg.s_s_end_address+'</td></tr><tr><td>订单开始时间</td><td>'+msg.s_time+'</td></tr><tr><td>订单结束时间</td><td>'+msg.s_end_time+'</td></tr><tr><td>订单完成密码</td><td>'+msg.s_pwd+'</td></tr>';
@@ -52,6 +72,18 @@
 						$("#dis").show()
 					}else{
 						$("#end_address").show()
+
+						//判断接单人是否评论
+						if(msg.s_type==4)
+						{
+							var s_id = $("#id").attr('ids');
+							$.get('{{host}}comment/show2/s_id/'+s_id+'/e_type/1',function(msg){
+								if(msg!=0)
+								{
+									$("#table1").append('<tr><td>接单人评论:</td><td>'+msg.e_content+'</td></tr>')
+								}
+							},'json')
+						}
 					}
 				},'json')
 
@@ -105,7 +137,6 @@
 						$(".loading").fadeOut()
 					})
 	    </script>
-		</div>
 	</div>
 </body>
 </html>
