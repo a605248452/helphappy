@@ -86,7 +86,7 @@
             alert(data)
             if(data==0)
             {
-                alert('请先登录')
+                // alert('请先登录')
                 // location.href="{{host}}login/login"
             } else {
                 var v = '';
