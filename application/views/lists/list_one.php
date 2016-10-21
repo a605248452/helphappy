@@ -4,18 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>赚不停</title>
-     <link rel="stylesheet" type="text/css" href="{{host}}public//css/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="{{host}}public//css/slick.css"/>
     <link rel="stylesheet" href="{{host}}public//css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="{{host}}public//css/style.css"/>
     <script src="{{host}}public//js/jquery.min.js"></script>
-     <script src="{{host}}public//js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="{{host}}public//js/jquery.mobile-1.4.5.min.js"></script>
      
 </head>
 <body style="background-color: #f2f2f2;">
 	<div class="loading"><img src="{{host}}public//images/ajax-loader.gif"/></div>
 	<div data-role="page" class="index" id="index">
 		<header data-role="header">
-		<a href="{{host}}lists/receive" data-rel="back" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
+		<a href="{{host}}lists/receive" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
 			<h3>赚不停</h3>
 		</header>
 			 <div data-role="main" class="ui-content">

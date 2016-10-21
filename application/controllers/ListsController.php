@@ -52,7 +52,9 @@ class ListsController extends \core\imooc
 			jump('order/orderlist');
 		}else{
 			//余额不足条充值页
-			header('refresh:2',jump('property/recharge'));
+			echo "<script>alert('余额不足，请充值');</script>";
+			$this->display('lists/send.php');
+			// jump('property/recharge');
 		}
 	}
 

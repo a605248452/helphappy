@@ -15,7 +15,7 @@
 	<div data-role="page" class="index" id="index">
 
 		<header data-role="header">
-		<a href="{{host}}lists/receive" data-rel="back" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
+		<a href="{{host}}lists/receive" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
 			<h3>赚不停</h3>
 		</header>
 			 <div data-role="main" class="ui-content">

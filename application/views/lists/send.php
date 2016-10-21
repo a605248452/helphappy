@@ -37,7 +37,7 @@
    		 
    		<!--jqmb需要把所以东西放在page div内--> 
 		<header data-role="header" data-position="fixed" data-tap-toggle="false">
-			<a href="{{host}}index/index" data-rel="back" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
+			<a href="{{host}}index/index" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
 			<h3>发单</h3>
 		</header>
 		<div class="ui-content" data-role="content">
@@ -283,7 +283,7 @@
 				}
 			}
 			//约定交易详细地址判断
-			function check_end_address(s_end_address)
+			function check_s_end_address(s_end_address)
 			{
 				var s_end_address = document.getElementById('s_end_address');
 				if(end_address.value=='')
