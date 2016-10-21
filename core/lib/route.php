@@ -27,6 +27,9 @@ class route
 		
 		if($request != '/') {
 			$path = $request;
+			if(strstr($path,'?')) {
+				$path = str_replace(strstr($path,'?'),'',$path);
+			}
 			$patharr = explode('/', trim($path, '/'));
 			if(isset($patharr[0])){
 				$this->controller = $patharr[0];
