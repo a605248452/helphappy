@@ -11,7 +11,7 @@ class WechatController extends \core\imooc
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
 
-        $token = 'bbl';
+        $token = 'lzy123';
         $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
