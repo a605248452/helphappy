@@ -31,7 +31,7 @@ class LoginController extends \core\imooc
         if ($login) {
             $_SESSION['id']=$login[0]['u_id'];
             $_SESSION['name']=$name;
-           jump('index/index');
+           jump('/');
         } else {
             echo "<script>alert('登陆失败');history.go(-1);</script>";
         }

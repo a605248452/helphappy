@@ -32,7 +32,7 @@
 
                 {% endif %}
             </li>
-            <li>
+            <li data-icon="refresh">
                 <small style="margin-left: 25%"><font color="black" size="3">昵称 ：</font></small>
                 {{one.nickname}}
             </li>

@@ -43,6 +43,15 @@ class userModel extends model
         return $one;
     }
     /*
+     * 单条个数
+     */
+    public function counts($table,$where){
+        $one=$this->count($table, $where);
+//        var_dump($this->error());die;
+        return $one;
+    }
+
+    /*
      * 多表多条件
      */
     public function joins($table,$join,$columns='*',$where){

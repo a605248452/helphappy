@@ -26,9 +26,7 @@
 				<dd>
 					<a href="{{host}}set/bank" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">银行卡</a>
 				</dd>
-                <dd>
-                    <a href="{{host}}set/order" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">我的订单</a>
-                </dd>
+
                 <dd>
                     <a href="{{host}}set/info" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">个人信息</a>
                 </dd>
@@ -55,7 +53,7 @@
 			</dl>
 		</div>
 		<footer  data-position="fixed" data-role="footer">
-			<a data-role="none" href="{{host}}set/out" class="outset">退出登录</a>
+			<a data-role="none" href="{{host}}set/out" class="outset" data-ajax="false">退出登录</a>
 		</footer>
 		<script src="js/jquery.min.js"></script>
    		<script src="js/jquery.mobile-1.4.5.min.js"></script>
