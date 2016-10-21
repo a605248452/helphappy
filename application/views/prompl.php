@@ -31,7 +31,7 @@
             <p>{{info.msg}}</p>
         </div>
         {% if info.status == 1 %}
-        <a href="{{host}}send/recharge" data-transition="slide">发一个单试试！</a>
+        <a href="{{host}}lists/send" data-transition="slide">发一个单试试！</a>
         {% else %}
         <a href="{{host}}property/recharge"  rel="external"  data-transition="slide">重新充值</a>
         {% endif %}
