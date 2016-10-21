@@ -2,9 +2,9 @@
 return array(
     'database_type'=>'mysql',
     'database_name'=>'bbl',
-    'server'=>'114.215.142.111',
-    'username'=>'lzy',
-    'password'=>'lzy',
+    'server'=>'112.126.94.78',
+    'username'=>'lhy',
+    'password'=>'lhy',
     'charset'=>'utf8',
     'port' => 3306,
     'prefix' => 'b_'

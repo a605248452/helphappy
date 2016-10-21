@@ -17,6 +17,12 @@ class SetController  extends \core\imooc
      * 设置主页
      */
     public function home(){
+//        $id=$_SESSION['id'];
+        $model=new userModel();
+        $res=$model->getone('user_info',['u_id'=>1]);
+        $result['name']=$res['realname'];
+        $result['phone']= substr_replace($res['phone'],'****',3,4);
+        $this->assign("one",$result);
         $this->display('set.php');
     }
 
@@ -52,10 +58,9 @@ class SetController  extends \core\imooc
      * 个人信息
      */
     public function info(){
-//        $id=$_SESSION['id'];
-//        $name=$_SESSION['name'];
+        $id=$_SESSION['id'];
         $model=new userModel();
-        $res=$model->getone("user_info",['u_id'=>1]);
+        $res=$model->getone("user_info",['u_id'=>$id]);
         $this->assign("one",$res);
         $this->display('set_info.php');
     }
@@ -105,22 +110,18 @@ class SetController  extends \core\imooc
      * 验证短信验证码
      */
     public function number(){
-        $number=post('num');
         $rand=$_SESSION['rand'];
         echo $rand;
-        if($number!=$rand){
-            echo 1;
-        }
     }
 
     /*
      * 修改手机号
      */
     public function setphone(){
-        //        $id=$_SESSION['id'];
+        $id=$_SESSION['id'];
         $phone=post('phone');
         $model=new userModel();
-        $res=$model->save('user_info',['phone'=>$phone],['u_id'=>1]);
+        $res=$model->save('user_info',['phone'=>$phone],['u_id'=>$id]);
         if($res){
             jump('Set/bang');
         }
@@ -136,9 +137,9 @@ class SetController  extends \core\imooc
      * 设置交易密码页面
      */
     public function gopass(){
-        //        $id=$_SESSION['id'];
+        $id=$_SESSION['id'];
         $model=new userModel();
-        $res=$model->getone('user_info',['u_id'=>1]);
+        $res=$model->getone('user_info',['u_id'=>$id]);
         $result['tel']=$res['phone'];
         $result['phone']= substr_replace($res['phone'],'****',3,4);
         $this->assign('sj',$result);
@@ -149,12 +150,11 @@ class SetController  extends \core\imooc
       * 设置交易密码
       */
     public function set_gopass(){
-        //        $id=$_SESSION['id'];
+        $id=$_SESSION['id'];
         $pass=post('pass');
-//        echo $pass;die;
         $paypass=MD5($pass);
         $model=new userModel();
-        $res=$model->save('user_info',['paypass'=>$paypass],['u_id'=>1]);
+        $res=$model->save('user_info',['paypass'=>$paypass],['u_id'=>$id]);
         if($res){
             jump('Set/pass');
         }
@@ -164,10 +164,10 @@ class SetController  extends \core\imooc
      * 交易旧密码
      */
     public function old(){
-        //        $id=$_SESSION['id'];
+        $id=$_SESSION['id'];
         $jps=post('jps');
         $model=new userModel();
-        $res=$model->getone('user_info',['u_id'=>1]);
+        $res=$model->getone('user_info',['u_id'=>$id]);
         $pass=$res['paypass'];
         $old=MD5($jps);
         if($pass==$old){
@@ -180,9 +180,9 @@ class SetController  extends \core\imooc
     * 修改登陆密码页面
     */
     public function topass(){
-        //        $id=$_SESSION['id'];
+        $id=$_SESSION['id'];
         $model=new userModel();
-        $res=$model->getone('user_info',['u_id'=>1]);
+        $res=$model->getone('user_info',['u_id'=>$id]);
         $result['tel']=$res['phone'];
         $result['phone']= substr_replace($res['phone'],'****',3,4);
         $this->assign('sj',$result);
@@ -193,9 +193,9 @@ class SetController  extends \core\imooc
     * 修改登录密码页面
     */
     public function pwd(){
-        //        $id=$_SESSION['id'];
+        $id=$_SESSION['id'];
         $model=new userModel();
-        $res=$model->getone('user_info',['u_id'=>1]);
+        $res=$model->getone('user_info',['u_id'=>$id]);
         $result['tel']=$res['phone'];
         $result['phone']= substr_replace($res['phone'],'****',3,4);
         $this->assign('sj',$result);
@@ -206,12 +206,11 @@ class SetController  extends \core\imooc
       * 修改登陆密码
       */
     public function set_topass(){
-        //        $id=$_SESSION['id'];
+        $id=$_SESSION['id'];
         $pwd=post('pwd');
-//       echo $pass;die;
         $npass=MD5($pwd);
         $model=new userModel();
-        $res=$model->save('user',['u_pwd'=>$npass],['u_id'=>1]);
+        $res=$model->save('user',['u_pwd'=>$npass],['u_id'=>$id]);
         if($res){
             jump('Set/pwd');
         }
@@ -221,10 +220,10 @@ class SetController  extends \core\imooc
     * 登陆旧密码
     */
     public function old_pwd(){
-        //        $id=$_SESSION['id'];
+        $id=$_SESSION['id'];
         $jps=post('pwd');
         $model=new userModel();
-        $res=$model->getone('user',['u_id'=>1]);
+        $res=$model->getone('user',['u_id'=>$id]);
         $pwd=$res['u_pwd'];
         $old=MD5($jps);
         if($pwd==$old){
@@ -243,6 +242,16 @@ class SetController  extends \core\imooc
     */
     public function details(){
         $this->display('set_details.php');
+    }
+
+    public function out(){
+        //注销登录
+            unset($_SESSION['id']);
+            unset($_SESSION['name']);
+            session_destroy();
+            jump('Login/login');
+            exit;
+
     }
 
 

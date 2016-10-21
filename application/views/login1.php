@@ -20,11 +20,13 @@
             <ul>
                 <li>
                     <label>用户名：</label>
-                    <input type="text" name="name" id="na" required=""  placeholder="请填写用户名" data-role="none"/>
+                    <input type="text" name="name" id="na" required=""  placeholder="请填写3-10字母" data-role="none"/>
+                    <p style="color: red" id="error1"></p>
                 </li>
                 <li>
                     <label>密码：</label>
-                    <input type="password" name="u_pwd" id="pwd" required="" placeholder="请填写密码" data-role="none"/>
+                    <input type="password" name="u_pwd" id="pwd" required="" placeholder="请填写6-10数字" data-role="none"/>
+                    <p style="color: red" id="error2"></p>
                 </li>
             </ul>
             <input type="submit" id="sub"   value="登陆" data-role="none"/>
@@ -38,10 +40,11 @@
         $(function(){
             //用户名
             $("#na").blur(function() {
-                var name1=/^[a-z]{6,10}$/i;
+                var name1=/^[a-z]{3,10}$/i;
                 var name=$(this).val();
                 if(!name1.test(name)){
                     this.style.border="1px solid red";
+                    $("#error1").html("请填写3-10字母");
                     return false;
                 }else{
                     this.style.border="1px solid green";
@@ -54,6 +57,7 @@
                 var pwd1=/^[0-9]{6,10}$/;
                 if(!pwd1.test(pwd)){
                     this.style.border="1px solid red";
+                    $("#error2").html("请填写6-10数字密码");
                     return false;
                 }else{
                     this.style.border="1px solid green";

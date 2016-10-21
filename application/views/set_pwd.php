@@ -89,14 +89,17 @@
                         tem.style.border="1px solid red";
                         return false;
                     }
-                    $.post("{{host}}set/number",{num:number},function(msg){
-                        //alert(msg);
-                        if(msg==1)
-                        {
+                    $.post("{{host}}login/number",function(msg){
+                        if(number==''){
                             tem.style.border="1px solid red";
                             return false;
-                        }else{
+                        }
+                        if(msg===number)
+                        {
                             tem.style.border="1px solid green";
+                        }else{
+                            tem.style.border="1px solid red";
+                            return false;
                         }
                     })
                 });
