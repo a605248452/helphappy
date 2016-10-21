@@ -7,7 +7,6 @@
     <base href="{{host}}public/"/>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-
 </head>
 <body>
 <div data-role="page" class="touzi phone" id="phone">
@@ -21,16 +20,16 @@
 
                 <li>
                     <label>账号：</label>
-                    <input type="text" name="u_name" id="name" required=""  placeholder="请填写账号"  data-role="none"/>
-                    <div id="error1"><span style="color: red"></span></div>
+                    <input type="text" name="u_name" id="name" required=""  placeholder="请填写3-10字母"  data-role="none"/>
+                    <p style="color: red" id="error1"></p>
                 </li>
                 <li>
                     <label>昵称：</label>
-                    <input type="text" name="nickname" id="nick"  required="" placeholder="请填写昵称" maxlength="20" data-role="none"/>
+                    <input type="text" name="nickname" id="nick"  required="required" placeholder="请填写昵称" maxlength="20" data-role="none"/>
                 </li>
                 <li>
                     <label>密码：</label>
-                    <input type="password" name="u_pwd" id="pwd" required=""  placeholder="请填6-10数字密码" maxlength="10" data-role="none"/>
+                    <input type="password" name="u_pwd" id="pwd" required="required"  placeholder="请填6-10数字密码" maxlength="10" data-role="none"/>
                 </li>
                 <li>
                     <label>确认密码：</label>
@@ -38,15 +37,17 @@
                 </li>
                 <li>
                     <label>邮箱：</label>
-                    <input type="email" name="email" id="email" required="" placeholder="请输入合法电子邮箱" data-role="none"/>
+                    <input type="email" name="email" id="email" required="required" placeholder="请输入合法电子邮箱" data-role="none"/>
                 </li>
                 <li>
                     <label>手机号：</label>
-                    <input type="tel" name="phone" id="tel" required="" placeholder="请输入合法手机号" maxlength="11" data-role="none"/>
+                    <input type="tel" name="phone" id="tel" required="required" placeholder="请输入合法手机号" maxlength="11" data-role="none"/>
+                    <p style="color: red" id="error2"></p>
                 </li>
                 <li>
                     <label>短信验证码：</label>
                     <input type="text" id="number" required="" name="number"/>
+                    <p style="color: red" id="error3"></p>
                     <input type="button" value="发送验证码" id="but" data-role="none"/>
                 </li>
 
@@ -62,7 +63,7 @@
       $(function(){
           //账号唯一性
           $("#name").blur(function(){
-              var name1=/^[a-z]{6,10}$/i;
+              var name1=/^[a-z]{3,10}$/i;
               var name=$(this).val();
               var zhe=this;
               if(name1.test(name)){
@@ -73,6 +74,7 @@
                           history.go(0);
                       }else{
                           zhe.style.border="1px solid green";
+                          $("#sub").attr("disabled", false);
                       }
                   })
               }else{
@@ -87,22 +89,30 @@
               var pwd1=/^[0-9]{6,10}$/;
               if(rpwd==''){
                   this.style.border="1px solid red";
+                  $("#sub").attr("disabled", true);
                   return false;
-              }
-              if(!pwd1.test(pwd)){
+              }else if(!pwd1.test(pwd)){
                   this.style.border="1px solid red";
                   return false;
               }else{
                   this.style.border="1px solid green";
                   return true;
               }
+
           });
 
           //确认密码是否一致
           $("#rpwd").blur(function(){
               var rpwd=$(this).val();
+              var rpwd1=/^[0-9]{6,10}$/;
               var pwd =$("#pwd").val();
-              if(rpwd!=pwd){
+               if(rpwd==''){
+                   this.style.border="1px solid red";
+                   return false;
+               }else if(!rpwd1.test(rpwd)){
+                  this.style.border="1px solid red";
+                  return false;
+              }else if(rpwd!=pwd){
                   this.style.border="1px solid red";
                   return false;
               }else{
@@ -115,14 +125,16 @@
           $("#email").blur(function(){
               var email=$(this).val();
               var email1=/^[\w]+(\.[\w]+)*@[\w]+(\.[\w]+)+$/;
-              if(!email1.test(email)){
+              if(email==''){
+                  this.style.border="1px solid red";
+                  return false;
+              }else if(!email1.test(email)){
                   this.style.border="1px solid red";
                   return false;
               }else{
                   this.style.border="1px solid green";
                   return true;
               }
-
           });
 
           //验证手机号
@@ -139,23 +151,22 @@
           });
 
           //短信验证码
-          $("#number").blur(function(){
+          $("#number").keyup(function(){
               var tem= this;
               var number =$("#number").val();
-              if(number==''){
-                  tem.style.border="1px solid red";
-                  return false;
-              }
-              $.post("{{host}}login/number",{num:number},function(msg){
-                  //alert(msg);
-                  if(msg==1)
-                  {
-                      tem.style.border="1px solid red";
-                      return false;
-                  }else{
-                      tem.style.border="1px solid green";
-                  }
-              })
+                  $.post("{{host}}login/number",function(msg){
+                      if(number==''){
+                          tem.style.border="1px solid red";
+                          return false;
+                      }
+                      if(msg===number)
+                      {
+                          tem.style.border="1px solid green";
+                      }else{
+                          tem.style.border="1px solid red";
+                          return false;
+                      }
+                  })
           });
 
           /*仿刷新：检测是否存在cookie*/
@@ -166,11 +177,9 @@
               var resend = setInterval(function(){
                   count--;
                   if (count > 0){
-
                       btn.val(count+'秒后可重新获取').attr('disabled',true).css('cursor','not-allowed');
                       $.cookie("captcha", count, {path: '/', expires: (1/86400)*count});
                   }else {
-
                       clearInterval(resend);
                       btn.val("获取验证码").removeClass('disabled').removeAttr('disabled style');
                   }
@@ -190,7 +199,6 @@
                       btn.val(count+"秒后可重新获取");
                       $.cookie("captcha", count, {path: '/', expires: (1/86400)*count});
                       $.cookie("time",t,{path: '/', expires: 1440*1000});
-
                   }else {
                       clearInterval(resend);
                       btn.val("获取验证码").removeAttr('disabled style');
@@ -199,17 +207,25 @@
 
               //发短信
               var tel=$("#tel").val();
-              $.post("{{host}}login/msg",{num:tel},function(msg){
-                  if(msg==1){
-                      alert("手机号!");
-                  }
-                  if(msg==2){
-                      alert("验证码!");
-                  }
-              });
+              var tel1=/^1(3|4|5|8|7)\d{9}$/;
+              if(tel==''){
+                  tel.style.border="1px solid red";
+                  return false;
+              }else  if(!tel1.test(tel)){
+                  tel.style.border="1px solid red";
+                  return false;
+              }else{
+                  $.post("{{host}}login/msg",{num:tel},function(msg){
+                      if(msg==1){
+                          $("#error2").html("手机号错误!");
+                      }
+                      if(msg==2){
+                          $("#error3").html("验证码错误!");
+                      }
+                  });
+              }
               btn.attr('disabled',true).css('cursor','not-allowed');
           });
-
       });
     </script>
 </div>

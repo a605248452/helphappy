@@ -31,9 +31,9 @@ class LoginController extends \core\imooc
         if ($login) {
             $_SESSION['id']=$login[0]['u_id'];
             $_SESSION['name']=$name;
-           jump('index/index');
+           jump('/');
         } else {
-            echo "<script>alert('失败');history.go(-1);</script>";
+            echo "<script>alert('登陆失败');history.go(-1);</script>";
         }
     }
 
@@ -51,16 +51,53 @@ class LoginController extends \core\imooc
     public function register()
     {
         //接值
+        $name1="/^[a-z]{3,10}$/i";
         $name = post('u_name');
-        $nickname = post('nickname');
+        if (!preg_match($name1, $name)) {
+            echo "<script>alert('注册失败');history.go(-1);</script>";
+            return FALSE;
+        }
+
+        $pwd1="/^[0-9]{6,10}$/";
         $pwd = post('u_pwd');
+        if (!preg_match($pwd1, $pwd)) {
+            echo "<script>alert('注册失败');history.go(-1);</script>";
+            return FALSE;
+        }
+
+        $email1="/^[\w]+(\.[\w]+)*@[\w]+(\.[\w]+)+$/";
         $email = post('email');
+        if (!preg_match($email1, $email)) {
+            echo "<script>alert('注册失败');history.go(-1);</script>";
+            return FALSE;
+        }
+
+        $phone1="/^1(3|4|5|8|7)\d{9}$/";
         $phone = post('phone');
-        $number=post('number');
+        if (!preg_match($phone1, $phone)) {
+            echo "<script>alert('注册失败');history.go(-1);</script>";
+            return FALSE;
+        }
+
+        $nickname = post('nickname');
+        if($nickname==''){
+            echo "<script>alert('注册失败');history.go(-1);</script>";
+            return FALSE;
+        }
+
+
+        $time=date('Y-m-d H:i:s',time());
         $model = new userModel();
-        $add = $model->add('user_info', ['u_name' => $name, 'nickname' => $nickname, 'u_pwd' => $pwd, 'email' => $email, 'phone' => $phone]);
-          if ($add) {
-              jump('Login/login');
+        $jia=$model->add('user',['u_name'=>$name,'u_pwd'=>md5($pwd)]);
+
+          if ($jia) {
+              $add = $model->add('user_info', ['u_id' => $jia, 'nickname' => $nickname, 'email' => $email, 'phone' => $phone,'regtime'=>$time]);
+              if($add){
+                  echo 1;
+                  jump('Login/login');
+              }else{
+                  echo 2;
+              }
           }
     }
 
@@ -106,15 +143,8 @@ class LoginController extends \core\imooc
      * 验证短信验证码
      */
     public function number(){
-        $number=post('num');
         $rand=$_SESSION['rand'];
         echo $rand;
-        if($number!=$rand){
-            echo 1;
-        }
     }
-
-
-
 }
 

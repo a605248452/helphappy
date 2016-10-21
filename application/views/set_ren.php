@@ -18,15 +18,15 @@
 		</header>
 		<div class="ui-content" data-role="content">
 			<form action="#" data-ajax="false">
-				<small>请填写您的真实信息</small>
+				<small><font color="#ff7f50">请填写您的真实信息</font></small>
 				<ul>
 					<li>
 						<label>真实姓名：</label>
-						<input type="text" placeholder="填写真实姓名"  />
+						<input type="text" required="" placeholder="填写真实姓名"  />
 					</li>
 					<li>
 						<label>身份证号：</label>
-						<input type="text"/>
+						<input type="text" required="" placeholder="填写合法身份证号"/>
 					</li>
 				</ul>
 				<input type="submit" value="确认并提交" data-role="none"/>

@@ -24,7 +24,7 @@
 					<a href="{{host}}set/details" data-transition="slide" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon"><label>帮帮乐介绍</label></a>
 				</dd>
                 <dd>
-                    <a href="set-details.html" data-transition="slide" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon"><label>我要接单</label></a>
+                    <a href="{{host}}lists/receive" data-transition="slide" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon"><label>我要接单</label></a>
                 </dd>
 				<dd>
 					<a href="set-details.html" data-transition="slide" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon"><label>账户安全</label></a>

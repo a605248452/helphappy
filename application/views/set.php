@@ -21,21 +21,19 @@
 		<div class="ui-content" data-role="content">
 			<dl>
 				<dd>
-					<a href="{{host}}set/name"  data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">实名认证<small>*玉嘭</small></a>
+					<a href="{{host}}set/name"  data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">实名认证<small>{{one.name}}</small></a>
 				</dd>
 				<dd>
 					<a href="{{host}}set/bank" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">银行卡</a>
 				</dd>
-                <dd>
-                    <a href="{{host}}set/order" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">我的订单</a>
-                </dd>
+
                 <dd>
                     <a href="{{host}}set/info" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">个人信息</a>
                 </dd>
 			</dl>
 			<dl>
                 <dd>
-                    <a href="{{host}}set/bang" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">绑定手机<small>13689781546</small></a>
+                    <a href="{{host}}set/bang" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">绑定手机<small>{{one.phone}}</small></a>
                 </dd>
 				<dd>
 					<a href="{{host}}set/pass" data-ajax="false" class="ui-btn ui-icon-appright ui-btn-icon-right ui-nodisc-icon">交易密码</a>
@@ -55,7 +53,7 @@
 			</dl>
 		</div>
 		<footer  data-position="fixed" data-role="footer">
-			<a data-role="none" href="#" class="outset">退出登录</a>
+			<a data-role="none" href="{{host}}set/out" class="outset" data-ajax="false">退出登录</a>
 		</footer>
 		<script src="js/jquery.min.js"></script>
    		<script src="js/jquery.mobile-1.4.5.min.js"></script>

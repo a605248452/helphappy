@@ -62,7 +62,7 @@
 			<ul>
 				<li><a href="{{host}}lists/receive"  rel="external">接单</a></li>
 				<li><a href="{{host}}lists/send"  rel="external">发单</a></li>
-				<li><a href="self.html"  rel="external">我的</a></li>
+				<li><a href="javascript:void(0)" id='center'  rel="external">我的</a></li>
 			</ul>
 		</footer>
 		<script src="{{host}}public/js/slick.min.js" ></script>
@@ -137,6 +137,15 @@
 					$(window).load(function(){
 						$(".loading").fadeOut()
 					})
+                    $(document).on('click','#center',function(){
+                        $.get("{{host}}common/checklog",{},function( data ){
+                            if(data == 0) {
+                                window.location.href = '{{host}}login/login'    
+                            } else {
+                                window.location.href = '{{host}}index/self'
+                            }
+                        })        
+                    })
 	    </script>
 	</div>
 </body>

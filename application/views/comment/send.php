@@ -26,19 +26,20 @@
 		<div id="myPoint">
 			<span><h2>总星</h2></span> 
 			<div>
-				<img src="{{host}}public/statics/star{{data.level}}.gif"/>
+				<img src="{{host}}public/statics/star{{data.e_level}}.gif"/>
 			</div>
 		</div> 
 		<div id="doPoint"> 
 			<p>星星评分=(服务+速度+信用)/3</p> 
 			<li>
-				<ul>服务:<img src="../public/statics/star{{data.fuwu}}.gif" alt=""></ul>   
-				<ul>速度:<img src="../public/statics/star{{data.speed}}.gif" alt=""></ul>
-				<ul>信用:<img src="../public/statics/star{{data.info}}.gif" alt=""></ul>
+				<ul>服务:<img src="../public/statics/star{{data.e_fuwu}}.gif" alt=""></ul>   
+				<ul>速度:<img src="../public/statics/star{{data.e_speed}}.gif" alt=""></ul>
+				<ul>信用:<img src="../public/statics/star{{data.e_info}}.gif" alt=""></ul>
 			</li>
-			
 
+			
 	 		<!-- <table  cellspacing="0" cellpadding="0" border="0">
+
 			{% for val in data %}
 			<li>
 				<ul><img src="../public/statics/star{{val.e_fuwu}}.gif" alt=""></ul>   

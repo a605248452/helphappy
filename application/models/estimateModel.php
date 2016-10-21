@@ -10,36 +10,59 @@ class estimateModel extends model
 	{
 		return $this->insert($this->table,$data);
 	}
+	//接单人评论发单人
+	public function sel($s_id,$tab){
+		return $this->select($tab,[
+			"u_id",
+			"r_id"
+			],[
+			"s_id"=>$s_id		
+		]);
+
+
+
+	}
 	//查看接单评论
-	public function all($u_id)
+	public function all($s_id,$e_type)
 	{
-		return $this->select($this->table,[
+		return $this->get($this->table,[
 	    	"e_fuwu",
 	    	"e_speed",
 	    	"e_info",
-	    	"e_level"
+	    	"e_level",
+	    	"e_content"
 		],["AND" => [
-        	"b_id" => "$u_id",
-	        "e_type" => 0,
+			"s_id"=>$s_id,
+	        "e_type" => $e_type,
 		   ]
 		]);
 	}
 	//收单评论
-	public function all_lend($u_id)
+	public function lend($s_id,$e_type)
 	{
-
-		return $this->select($this->table,[
+		return $this->get($this->table,[
 	    	"e_fuwu",
 	    	"e_speed",
 	    	"e_info",
-	    	"e_level"
-			],
-			["AND" => [
-	        "b_id" =>"$u_id",
-	        "e_type" => 1,
-		    ]
+	    	"e_level",
+	    	"e_content"
+		],["AND" => [
+			"s_id"=>$s_id,
+	        "e_type" => $e_type,
+		   ]
 		]);
 	}
+
+	// public function main($u_id){
+	// 	return $this->select($this->table,[
+	// 			"p_id",
+	// 			"e_content"
+	// 		],
+	// 		["AND"=>[
+	//         "b_id" =>"$u_id",
+	// 		]
+	// 	]);
+	// }
 	/**
 	 * 发单类型
 	 */
