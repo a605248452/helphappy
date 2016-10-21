@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{host}}public/css/style.css"/>
     <script src="{{host}}public/js/jquery.min.js"></script>
     <script src="{{host}}public/js/jquery.mobile-1.4.5.min.js"></script>
-	<meta http-equiv=refresh content="3;url=send">
+	<meta http-equiv=refresh content="3;url=../order/orderlist">
 </head>
 <body style="background-color: #f2f2f2;">
 	<div class="loading"><img src="{{host}}public/images/ajax-loader.gif"/></div>

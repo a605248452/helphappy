@@ -55,7 +55,7 @@
 					</tbody>
 			</table>
 	
-		<form id="form1"  action="{{host}}comment/jf" method="post" target="_top">
+		<form id="form1"  action="{{host}}comment/fj" method="post" target="_top">
 			<input id="pointV1" type="hidden" value="5" name="pointV1" /> 
 			<input id="pointV2" type="hidden" value="5" name="pointV2" /> 
 			<input id="pointV3" type="hidden" value="5" name="pointV3" /> 
