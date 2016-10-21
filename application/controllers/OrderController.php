@@ -92,7 +92,7 @@ class OrderController extends \core\imooc
         $distance = substr($s,0,strpos($s,'.'));
         // echo $distance;die;
         // echo $distance;die;
-        if($distance>150000)
+        if($distance>1500)
         {
             echo '1';die;
         }else{
