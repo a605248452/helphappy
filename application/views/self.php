@@ -24,15 +24,15 @@
 			</section>
 			<div class="self-tixian">
 				<p>总余额（元）<b>￥{{one.balance}}</b></p>
-				<a href="{{host}}property/recharge" data-role="none" data-transition="slide" class="chong">充值</a>
-				<a href="{{host}}property/cash" data-role="none" data-transition="slide" class="tixian">提现</a>
+				<a href="{{host}}property/recharge" data-role="none" data-transition="slide" data-ajax="false"  class="chong">充值</a>
+				<a href="{{host}}property/cash" data-role="none" data-transition="slide" data-ajax="false"  class="tixian">提现</a>
 			</div>
 			<dl>
 				<dd>
-					<a href="{{host}}order/list" data-transition="slide" class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的订单</a>
+					<a href="{{host}}order/list" data-transition="slide" data-ajax="false"  class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的订单</a>
 				</dd>
                 <dd>
-                    <a href="{{host}}comment/lend" data-transition="slide" class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的评价</a>
+                    <a href="{{host}}comment/lend" data-transition="slide" data-ajax="false"  class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的评价</a>
                 </dd>
 				<dt>
 					<a href="{{host}}set/home" data-ajax="false" class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">设置</a>
