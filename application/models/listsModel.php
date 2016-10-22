@@ -34,7 +34,8 @@ class listsModel extends model
     //发单订单详情
     public function receive_details($id)
     {
-        return $data = $this->get($this->table,["[><]user"=>["u_id"=>"open_id"]],'*',array('s_id'=>$id));
+        return $data = $this->get($this->table,["[><]user"=>["u_id"=>"u_id"]],'*',array('s_id'=>$id));
+        // print_r($data);die;
     }
 
     //接单
