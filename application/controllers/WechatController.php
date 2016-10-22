@@ -128,8 +128,16 @@ class WechatController extends \core\imooc
             $uinfo=json_decode($uinfo,true);
             $openid=isset($uinfo['openid'])?$uinfo['openid']:false;
             if ($openid!=false) {
-                $this->assign('openid',$openid);
-                $this->display('bangding.php');
+            	$model = new model();
+                $info = $model->get("user",'u_id',['open_id'=>$openid]);
+                if($info!=false){
+                    $_SESSION['id'] = $info;
+                    jump("/");
+                }else{
+                	$this->assign('openid',$openid);
+                	$this->display('bangding.php');
+                }
+                
             }else{
                 echo "本页面刷新无效";
             }
