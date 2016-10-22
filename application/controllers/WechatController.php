@@ -102,8 +102,8 @@ class WechatController extends \core\imooc
                 $info = $model->get("user",'u_id',['open_id'=>$openid]);
                 if($info!=false){
                     $_SESSION['id'] = $info;
-                    jump('/');
                 }
+                jump('/');
             }
     }
 
