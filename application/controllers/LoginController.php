@@ -91,13 +91,9 @@ class LoginController extends \core\imooc
         $jia=$model->add('user',['u_name'=>$name,'u_pwd'=>md5($pwd)]);
 
           if ($jia) {
-              $add = $model->add('user_info', ['u_id' => $jia, 'nickname' => $nickname, 'email' => $email, 'phone' => $phone,'regtime'=>$time]);
-              if($add){
-                  echo 1;
-                  jump('Login/login');
-              }else{
-                  echo 2;
-              }
+              $model->add('user_info', ['u_id' => $jia, 'nickname' => $nickname, 'email' => $email, 'phone' => $phone,'regtime'=>$time]);
+              jump('Login/login');
+
           }
     }
 

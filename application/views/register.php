@@ -71,10 +71,10 @@
                       if(one==1){
                           zhe.style.border="1px solid red";
                           $("#error1").html("账号已存在,请重新填写!");
-                          history.go(0);
+                         // history.go(0);
                       }else{
                           zhe.style.border="1px solid green";
-                          $("#sub").attr("disabled", false);
+                          $("#error1").html("");
                       }
                   })
               }else{

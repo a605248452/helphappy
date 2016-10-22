@@ -34,6 +34,9 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.cookie.js" ></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script>
+
+    </script>
 </div>
 </body>
 </html>

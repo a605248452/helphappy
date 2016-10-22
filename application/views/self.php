@@ -29,7 +29,7 @@
 			</div>
 			<dl>
 				<dd>
-					<a href="{{host}}order/list" data-transition="slide" data-ajax="false"  class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的订单</a>
+					<a href="{{host}}order/orderlist" data-transition="slide" data-ajax="false"  class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的订单</a>
 				</dd>
                 <dd>
                     <a href="{{host}}comment/lend" data-transition="slide" data-ajax="false" class="ui-btn ui-btn-icon-right ui-icon-appright ui-nodisc-icon">我的评价</a>

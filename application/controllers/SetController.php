@@ -348,22 +348,35 @@ class SetController  extends \core\imooc
             $this->display('set_details.php');
         }
     }
+    /*
+     * 退出登陆
+     */
     public function out(){
         //注销登录
             unset($_SESSION['id']);
             unset($_SESSION['name']);
             session_destroy();
             jump('/');
-            //exit;
+            exit;
 
     }
 
-
-
-
-
-
-
-
+///*
+// * 修改昵称
+// */
+//    public function change()
+//    {
+//        $id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
+//        if ($id == 0) {
+//            jump('Login/login');
+//        } else {
+//            $nick = post('title');
+//            $model = new userModel();
+//            $result=$model->save('user_info',['nickname'=>$nick],['u_id'=>$id]);
+//            if($result){
+//                echo 1;
+//            }
+//        }
+//    }
 
 }
