@@ -170,13 +170,80 @@ class CommentController extends \core\imooc
 			
 		}
 	}
-		    // $star=floor(array_sum($e_level)/count($e_level));
-		 	// $user_model=new \application\models\userModel();
-		 // 	$table='user';
-			// $re=$model->star($u_id,$star,$table);
-		
+	/**
+ * @接单星数
+ * @return [type] [0]
+ */
+	public function send()
+	{
+		$u_id=$_SESSION['id'];
+		$model=new \application\models\estimateModel();
+		$data=$model->send($u_id);
+		//转一维函数
+		$e_fuwu=array_column($data,'e_fuwu');
+		// var_dump($e_fuwu);die;
+		$e_speed=array_column($data,'e_speed');
+		$e_info=array_column($data,'e_info');
+		$e_level=array_column($data,'e_level');
+		//求和
+		// echo count($e_fuwu);die;
+		if(count($e_fuwu)>=1){
+			$data['count']=count($e_fuwu);
+			// echo $data['count'];die;
+			$data['fuwu']=ceil(array_sum($e_fuwu)/count($e_fuwu));
+			$data['u_id']=$u_id;
+		 	$data['speed']=ceil(array_sum($e_speed)/count($e_speed));
+		 	$data['info']=ceil(array_sum($e_info)/count($e_info));
+		 	$data['level']=floor(array_sum($e_level)/count($e_level));
+ 		// 	$star=floor(array_sum($e_level)/count($e_level));
+ 		// 	//用户星级
+		 // 	$user_model=new \application\models\userModel();
+			// $re=$user_model->star($u_id,$star);
+	        $this->assign('data',$data);
+	        $this->display('comment/send.php');
+		}else{
+			echo "<script>alert('还没人评论你哦');</script>";
+			header('refresh:0.1;../');			
+		}
+		// print_r($e_fuwu);die;
 
+	}
 	
+	/**
+	 * @发单星数
+	 * @return [type] [1]
+	 */
+	public function lend()
+	{
+		$u_id=$_SESSION['id'];
+		$model=new \application\models\estimateModel();
+		$data=$model->all_lend($u_id);
+
+		$e_fuwu=array_column($data,'e_fuwu');
+		// var_dump($e_fuwu);die;
+		$e_speed=array_column($data,'e_speed');
+		$e_info=array_column($data,'e_info');
+		$e_level=array_column($data,'e_level');
+		//求和
+		// echo count($e_fuwu);die;
+		if(count($e_fuwu)>=1){ 
+			$data['count']=count($e_fuwu);
+			$data['fuwu']=ceil(array_sum($e_fuwu)/count($e_fuwu));
+			$data['u_id']=$u_id;
+		 	$data['speed']=ceil(array_sum($e_speed)/count($e_speed));
+		 	$data['info']=ceil(array_sum($e_info)/count($e_info));
+		 	$data['level']=floor(array_sum($e_level)/count($e_level));
+		    $star=floor(array_sum($e_level)/count($e_level));		 	
+	        $this->assign('data',$data);
+	        $this->display('comment/lend.php');
+		}else{
+			echo "<script>alert('还没人评论你哦');</script>";
+			header('refresh:0.1;../');
+			// $this->assign('data',$data);
+	        // $this->display('comment/sendone.php');
+		}
+
+	}
 
 	/**
 	 * [抽奖]
@@ -204,6 +271,15 @@ class CommentController extends \core\imooc
 	 */
 	public function share(){
 		echo "<script>alert('分享成功');</script>";
-		header('refresh:0.1;../');
+		header('refresh:0.1;../comment/top');
+	}
+	//排行
+	public function top(){
+		$model=new \application\models\estimateModel();
+		$tab="user";
+		$data=$model->top($tab);
+		// var_dump($data);die;
+		$this->assign("data",$data);
+		$this->display('comment/top.php');
 	}
 }

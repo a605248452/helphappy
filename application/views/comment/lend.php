@@ -48,8 +48,8 @@
 			{% endfor%}
 			</table> -->
 			<br>
-		<h3><a href="send">发单评论</a></h3>
-		<h3><a href="lend">接单评论</a></h3>
+		<h3><a href="send">接单评论</a></h3>
+		<h3><a href="lend">发单评论</a></h3>
 		 <script src="{{host}}public/js/jquery.min.js"></script>
      	 <script src="{{host}}public/js/jquery.mobile-1.4.5.min.js"></script>
 	     <script type="text/javascript">

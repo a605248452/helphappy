@@ -52,7 +52,37 @@ class estimateModel extends model
 		   ]
 		]);
 	}
+		//查看接单评论
+	public function send($u_id)
+	{
+		return $this->select($this->table,[
+	    	"e_fuwu",
+	    	"e_speed",
+	    	"e_info",
+	    	"e_level"
+		],["AND" => [
+        	"b_id" => "$u_id",
+	        "e_type" => 0,
+		   ]
+		]);
+	}
 
+//收单评论
+	public function all_lend($u_id)
+	{
+
+		return $this->select($this->table,[
+	    	"e_fuwu",
+	    	"e_speed",
+	    	"e_info",
+	    	"e_level"
+			],
+			["AND" => [
+	        "b_id" =>"$u_id",
+	        "e_type" => 1,
+		    ]
+		]);
+	}
 	// public function main($u_id){
 	// 	return $this->select($this->table,[
 	// 			"p_id",
@@ -72,6 +102,14 @@ class estimateModel extends model
             ],[
             	'b_id'=>$b_id
             ]);
+	}
+
+	public function top($tab){
+		return $this->select($tab,["u_id","u_name","star_num"],["AND"=>[
+        "star_num" => [ 8, 9, 10] ,
+		],
+			"ORDER" => ["star_num" =>"DESC"]
+		]);
 	}
 
 
