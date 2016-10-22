@@ -11,8 +11,7 @@ class SignInController extends \core\imooc
      */
     public function show()
     {
-        $id = $_SESSION['id'];
-        if($id)
+        if(isset($_SESSION['id']))
         {
             $this->display('sign_in/show.php');
         }else{
