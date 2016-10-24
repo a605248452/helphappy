@@ -18,7 +18,7 @@ class ListsController extends \core\imooc
 		$u_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0 ;
 		if($u_id==0)
 		{
-			jump('login/login');
+			jump('login/login');die;
 		}
 		$little='';
 		for($i=0;$i<2;$i++)
