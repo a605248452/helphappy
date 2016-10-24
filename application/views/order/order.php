@@ -20,7 +20,7 @@
         <a href="#" data-ajax="false" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
         <h3>我的订单</h3>
     </header>
-    <div class="ui-content" style="height:62px"  data-role="content">
+    <div class="ui-content" style="height:100%"  data-role="content">
         <div class="nav-tab-top">
             <ul>
                 <li data-code="send"  class="cur click">
