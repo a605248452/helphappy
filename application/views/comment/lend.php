@@ -24,7 +24,7 @@
 <div id="box"> 
 	<h2 align="center">发单评论</h2> 
 		<div id="myPoint">
-			<span><h2>总星</h2></span> 
+			<span><big>{{data.level}}</big><small>.0</small></span> 
 			<div>
 				<img src="{{host}}public/statics/star{{data.level}}.gif"/>
 			</div>

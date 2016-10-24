@@ -113,8 +113,7 @@ class CommentController extends \core\imooc
 	}
 }
 	/* 发单评论接单
-	 * [next description]
-	 * @return function [挑转页面]
+	 * @return function [跳转页面]
 	 */
 	public function next(){
 
@@ -171,7 +170,7 @@ class CommentController extends \core\imooc
 		}
 	}
 	/**
- * @接单星数
+ * @展示接单星数
  * @return [type] [0]
  */
 	public function send()
@@ -210,7 +209,7 @@ class CommentController extends \core\imooc
 	}
 	
 	/**
-	 * @发单星数
+	 * @展示发单星数
 	 * @return [type] [1]
 	 */
 	public function lend()

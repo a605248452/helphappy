@@ -41,7 +41,7 @@
 
 		
 		<footer  data-position="fixed" data-role="footer">
-			<font color="red" >&nbsp;&nbsp;   特别提醒：综合评价高于7星可以荣登排行板</font>
+			<font color="red" >&nbsp;&nbsp;   特别提醒：综合评价高于8星可以荣登排行板</font>
 			<a data-role="none" href="{{host}}index/index" class="outset" data-ajax="false">返回首页</a>
 		</footer>
 		<script src="js/jquery.min.js"></script>

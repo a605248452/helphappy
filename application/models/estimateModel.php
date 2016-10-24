@@ -103,12 +103,16 @@ class estimateModel extends model
             	'b_id'=>$b_id
             ]);
 	}
-
+	/**
+	 * 排行榜
+	 * @param  [type] $tab [description]
+	 * @return [type]      [description]
+	 */
 	public function top($tab){
 		return $this->select($tab,["u_id","u_name","star_num"],["AND"=>[
-        "star_num" => [ 8, 9, 10] ,
+        "star_num" => [9, 10] ,
 		],
-			"ORDER" => ["star_num" =>"DESC"]
+			"ORDER" => ["star_num" =>"DESC"], "LIMIT" => [0,5]
 		]);
 	}
 
