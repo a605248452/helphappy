@@ -28,7 +28,7 @@ class listsModel extends model
     //订单列表
     public function lists($u_id)
     {
-    	return $this->select($this->table,["[><]user"=>["u_id"=>"open_id"]],['s_id','send.u_id','s_time','s_m_lng','s_m_lat','s_violate_money','s_title','u_name','star_num'],["AND"=>["send.u_id[!]"=>$u_id,"s_type"=>1]]);
+    	return $this->select($this->table,["[><]user"=>["u_id"=>"u_id"]],['s_id','send.u_id','s_time','s_m_lng','s_m_lat','s_violate_money','s_title','u_name','star_num'],["AND"=>["send.u_id[!]"=>$u_id,"s_type"=>1]]);
     }
 
     //发单订单详情

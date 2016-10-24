@@ -73,7 +73,7 @@ class ListsController extends \core\imooc
 		$lat2 = get('lat');
 		$lists = new listsModel();
 		//开发完成后需要更改
-		$u_id=2;
+		$u_id = $_SESSION['id'];
 		$data = $lists->lists($u_id);
 		foreach($data as $key=>$val)
 		{
@@ -87,6 +87,7 @@ class ListsController extends \core\imooc
 			$s=2*asin(sqrt(pow(sin($a/2),2)+cos($radLat1)*cos($radLat2)*pow(sin($b/2),2)))*6378.137*1000;
 			$data[$key]['distance'] = substr($s,0,strpos($s,'.'));
 		}
+		// echo json_encode($data);die;
 		foreach($data as $key=>$val)
 		{
 			if($val['distance']<=$distance)

@@ -14,9 +14,7 @@
 <body style="background-color: #f2f2f2;">
 	<div class="loading"><img src="{{host}}public/images/ajax-loader.gif"/></div>
 	<div data-role="page" class="index" id="index">
-			<!--jqmb需要把所以东西放在page div内-->
-		 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
-   		 <link rel="stylesheet" href="css/style.css"/>
+
 		<!--jqmb需要把所以东西放在page div内--> 
 		<header data-role="header" data-position="fixed">
 			<a href="{{host}}index/index" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a> 
