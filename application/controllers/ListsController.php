@@ -185,9 +185,10 @@ class ListsController extends \core\imooc
 	public function finish()
 	{
 		$s_id = get('s_id');
+		$u_id = $_SESSION['id'];
 		$pwd  = get('pwd');
 		$lists = new listsModel();
-		$bool = $lists->check_pwd($s_id,$pwd);
+		$bool = $lists->check_pwd($s_id,$pwd,$u_id);
 		if($bool)
 		{
 			echo '1';

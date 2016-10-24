@@ -104,7 +104,7 @@ class listsModel extends model
     }
 
     //判断订单完成密码是否正确
-    public function check_pwd($s_id,$pwd)
+    public function check_pwd($s_id,$pwd,$u_id)
     {
         $pwd1 = $this->get($this->table,'s_pwd',['s_id'=>$s_id]);
         // echo $pwd1.'---'.md5($pwd);die;
