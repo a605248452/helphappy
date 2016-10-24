@@ -28,7 +28,7 @@
 				<p><img src="{{host}}public/img/s_sd.png"/></p>
 				<ul>
 					<li>呦,天气不错哦</li>
-					<li>你一共签到<a href="#" style="color: black;">5</a>次</li>
+					<li>你一共签到<a href="#" style="color: black;"><span id="sum"></span></a>次</li>
 					<li>已连续签到<a href="{{host}}public/" style="color: black;"><span id="day"></span></a>天</li>
 
 					<!-- <li>你拥有<a href="{{host}}public/" style="color: black;">0</a>次的兑换机会</li> -->
@@ -123,6 +123,7 @@
 		//查看签到次数
 		$.get('{{host}}signIn/xiangqing',function(msg){
 			$("#day").html(msg.day)
+			$("#sum").html(msg.sum)
 		},'json')
 
 		//签到，判断是否已经签到

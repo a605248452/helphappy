@@ -45,7 +45,7 @@
 					for(var i=0;i<msg.length;i++)
 					{
 						dl+='<dl class="index-year" >\
-								<a href="month.html" data-transition="slide" data-ajax="false">\
+								<a href="#" data-transition="slide" data-ajax="false">\
 									<dd>\
 										<div style="float:left;width:60%;">\
 										<h4 rowspan="2">'+msg[i].g_name+'</h4>\

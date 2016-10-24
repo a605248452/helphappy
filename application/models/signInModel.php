@@ -46,6 +46,9 @@ class signInModel extends model
      */
     public function num($u_id)
     {
+        //总签到次数
+        $sum = $this->get($this->table,['sum_num'],['u_id' => $u_id]);
+        //连续签到
         $data = $this->get($this->table1,'*',['u_id' => $u_id,'ORDER' => [$this->table1.'.s_date' => 'DESC']]);
         if($data['s_date']!=date('Y-m-d'))
         {
@@ -53,10 +56,10 @@ class signInModel extends model
             {
                 return 0;
             }else{
-                return ['day' => $data['l_num']];
+                return ['day' => $data['l_num'],'sum' => $sum['sum_num']];
             }
         }else{
-            return ['day' => $data['l_num']];
+            return ['day' => $data['l_num'],'sum' => $sum['sum_num']];
         }
     }
 
