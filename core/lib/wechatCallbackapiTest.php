@@ -2,6 +2,9 @@
 
 namespace core\lib;
 
+
+use core\lib\model;
+
 class wechatCallbackapiTest
 {
     public function valid()
@@ -15,41 +18,166 @@ class wechatCallbackapiTest
 
     public function responseMsg()
     {
-        //get post data, May be due to the different environments
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 
-        //extract post data
-        if (!empty($postStr)){
-            /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
-               the best way is to check the validity of xml by yourself */
-            libxml_disable_entity_loader(true);
-            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $fromUsername = $postObj->FromUserName;
-            $toUsername = $postObj->ToUserName;
-            $keyword = trim($postObj->Content);
-            $time = time();
-            $textTpl = "<xml>
-							<ToUserName><![CDATA[%s]]></ToUserName>
-							<FromUserName><![CDATA[%s]]></FromUserName>
-							<CreateTime>%s</CreateTime>
-							<MsgType><![CDATA[%s]]></MsgType>
-							<Content><![CDATA[%s]]></Content>
-							<FuncFlag>0</FuncFlag>
-							</xml>";
-            if(!empty( $keyword ))
-            {
-                $msgType = "text";
-                $contentStr = "Welcome to wechat world!";
-                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                echo $resultStr;
-            }else{
-                echo "Input something...";
-            }
+      	//extract post data
+		if (!empty($postStr)){
+                
+              	$postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+				$RX_TYPE = trim($postObj->MsgType);
 
-        }else {
-            echo "";
-            exit;
+				switch($RX_TYPE)
+				{
+					case "text":
+						$resultStr = $this->handleText($postObj);
+						break;
+					case "event":
+						$resultStr = $this->handleEvent($postObj);
+						break;
+					default:
+						$resultStr = "Unknow msg type: ".$RX_TYPE;
+						break;
+				}
+				echo $resultStr;
+		}else{
+			echo "";
+			exit;
+		}
+	}
+
+    public function handleText($postObj)
+    {     
+        $keyword = trim($postObj->Content);
+        if(!empty( $keyword ))
+        {
+            $content = '李智渊';
+            return $this->texttemplate($postObj,$content);
         }
+    }
+
+    
+    private function handleEvent($postObj)
+    {
+    	
+        switch ($postObj->Event)
+        {
+            case "subscribe":
+            	$content =  "欢迎关注帮帮乐";
+                $result = $this->texttemplate($postObj,$content);
+                break;
+            case "CLICK":   //这里是大写‘CLICK’
+                $result = $this->usertemplate($postObj,$postObj->EventKey);
+                break;
+        }
+        
+        return $result;
+    }
+
+    public function usertemplate($postObj,$type){
+        switch ($type) {
+        	case 'userinfo':
+        		$openid = $postObj->FromUserName;;
+        		$result = $this->userinfotmp($openid);
+        		break;
+        	
+        	default:
+        		# code...
+        		break;
+        }
+        return $result;
+    }
+
+    public function userinfotmp($openid){
+    	$model = new model();
+    	$res = $model->get('user','*',['open_id'=>$openid]);
+    	if($res!=false){
+    		$info = $model->get('user_info','*',['u_id'=>$res['u_id']]);
+    		$json = '{
+           	"touser":"'.$openid.'",
+           	"template_id":"DSwCc6CNn2JxyW23l-b2fWiAF-Ok6ntm4rdHqeYnbwA",
+           	"url":"http://bbl.lzyapp.cn/set/info",            
+           	"data":{
+                   "frist": {
+                       "value":"您已成功绑定帮帮乐账号",
+                       "color":"red"
+                   },
+                   "keywords1":{
+                       "value":"'.$res['open_id'].'",
+                       "color":"#173177"
+                   },
+                   "keywords2": {
+                       "value":"'.$info['nickname'].'",
+                       "color":"#173177"
+                   },
+                   "keywords3": {
+                       "value":"'.$info['regtime'].'",
+                       "color":"#173177"
+                   },
+                   "keywords4": {
+                       "value":"'.$info['lastlogintime'].'",
+                       "color":"#173177"
+                   },
+                   "remark":{
+                       "value":"感谢您的查询",
+                       "color":"red"
+                   }
+           		}
+       		}';
+    	}else{
+    		$json = '{
+           	"touser":"'.$openid.'",
+           	"template_id":"DSwCc6CNn2JxyW23l-b2fWiAF-Ok6ntm4rdHqeYnbwA",
+           	"url":"http://bbl.lzyapp.cn/wechat/bangding",            
+           	"data":{
+                   "frist": {
+                       "value":"您未绑定帮帮乐账号",
+                       "color":"red"
+                   },
+                   "keywords1":{
+                       "value":"*****",
+                       "color":"#173177"
+                   },
+                   "keywords2": {
+                       "value":"*****",
+                       "color":"#173177"
+                   },
+                   "keywords3": {
+                       "value":"*****",
+                       "color":"#173177"
+                   },
+                   "keywords4": {
+                       "value":"*****",
+                       "color":"#173177"
+                   },
+                   "remark":{
+                       "value":"请绑定您的帮帮乐账号",
+                       "color":"red"
+                   }
+           		}
+       		}';
+    	}
+    	$token = $this->getToken();
+    	$url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$token;
+    	$this->curlPost($url, $json);
+    	return '';
+    	  	
+    }
+
+    private function texttemplate($postObj,$content){
+    	$fromUsername = $postObj->FromUserName;
+        $toUsername = $postObj->ToUserName;
+        $time = time();
+        $textTpl = "<xml>
+						<ToUserName><![CDATA[%s]]></ToUserName>
+						<FromUserName><![CDATA[%s]]></FromUserName>
+						<CreateTime>%s</CreateTime>
+						<MsgType><![CDATA[%s]]></MsgType>
+						<Content><![CDATA[%s]]></Content>
+						<FuncFlag>0</FuncFlag>
+					</xml>";
+         
+        $msgType = "text";
+        return sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $content);
     }
 
     public function getToken(){

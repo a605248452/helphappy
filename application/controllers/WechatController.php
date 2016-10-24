@@ -12,7 +12,7 @@ class WechatController extends \core\imooc
     {
         define("TOKEN",'lzy123');
         $wechat = new wechatCallbackapiTest();
-        $wechat->valid();
+        $wechat->responseMsg();
     }
 
     public function updatamenu()
@@ -31,6 +31,11 @@ class WechatController extends \core\imooc
                             "type":"click",
                             "name":"个人信息",
                             "key":"userinfo"
+                        },
+                        {    
+                            "type":"view",
+                            "name":"签到",
+                            "url":"http://bbl.lzyapp.cn/signIn/show"
                         },
                         {
                             "type":"click",
@@ -101,7 +106,7 @@ class WechatController extends \core\imooc
                 $model = new model();
                 $info = $model->get("user",'u_id',['open_id'=>$openid]);
                 if($info!=false){
-                    $_SESSION['id'] = $info;
+                    $_SESSION['id'] = $info['u_id'];
                 }
                 jump('/');
             }
@@ -164,4 +169,9 @@ class WechatController extends \core\imooc
 
     }
     
+    public function text(){
+        $openid = 'oq6-123';
+        $wechat = new wechatCallbackapiTest();
+        $wechat->userinfotmp($openid);
+    }
 }
