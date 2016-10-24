@@ -168,10 +168,4 @@ class WechatController extends \core\imooc
         }
 
     }
-    
-    public function text(){
-        $openid = 'oq6-123';
-        $wechat = new wechatCallbackapiTest();
-        $wechat->userinfotmp($openid);
-    }
 }
