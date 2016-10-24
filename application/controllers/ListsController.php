@@ -15,7 +15,11 @@ class ListsController extends \core\imooc
 	//发单信息添加入库
 	public function add_lists()
 	{
-		$u_id = $_SESSION['id'];
+		$u_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0 ;
+		if($u_id==0)
+		{
+			jump('login/login');
+		}
 		$little='';
 		for($i=0;$i<2;$i++)
 		{
