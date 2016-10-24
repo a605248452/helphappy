@@ -27,7 +27,7 @@ class ListsController extends \core\imooc
 		$s_mission = explode(',',post('mission'));
 		$s_finish  = explode(',',post('finish'));
 		// $u_id = 	$_SESSION['id'];
-		$data['u_id'] = 1;
+		$data['u_id'] = $u_id;
 		$data['s_title'] = 		post('title');
 		$data['s_content'] = 	post('content');
 		$data['s_call'] = 		post('call');
