@@ -21,7 +21,7 @@
         <h3>我的订单</h3>
     </header>
     <div class="ui-content"   data-role="content">
-        <div class="nav-tab-top" style="height:62px">
+        <div class="nav-tab-top" style="height:47px">
             <ul>
                 <li data-code="send"  class="cur click">
                     我发的订单
