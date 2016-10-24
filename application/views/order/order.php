@@ -17,7 +17,7 @@
 
     <!--jqmb需要把所以东西放在page div内-->
     <header data-role="header" data-position="fixed">
-        <a href="#" data-rel="back" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
+        <a href="#" data-ajax="false" class="ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon" data-transition="slide" data-direction="revserse">返回</a>
         <h3>我的订单</h3>
     </header>
     <div class="ui-content"  data-role="content">
