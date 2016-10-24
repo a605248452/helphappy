@@ -25,8 +25,8 @@ class SignInController extends \core\imooc
     public function add()
     {
         $u_id = $_SESSION['id'];
-        $sign_in = new signInModel();
-        $date = $sign_in->add($u_id);
+        $signIn = new signInModel();
+        $date = $signIn->add($u_id);
         echo json_encode($date);
     }
 
@@ -36,8 +36,39 @@ class SignInController extends \core\imooc
     public function xiangqing()
     {
         $u_id = $_SESSION['id'];
-        $sign_in = new signInModel();
-        $num = $sign_in->num($u_id);
+        $signIn = new signInModel();
+        $num = $signIn->num($u_id);
         echo json_encode($num);
+    }
+
+    /**
+     * 签到次数兑换奖品
+     */
+    public function exchange()
+    {
+        $u_id = $_SESSION['id'];
+        $id = get('id');
+        $signIn = new signInModel();
+        $bool = $signIn->exchange($id,$u_id);
+        echo $bool;
+    }
+
+    /**
+     * 个人奖品页
+     */
+    public function price()
+    {
+        $this->display('sign_in/price.php');
+    }
+
+    /**
+     * 奖品列表
+     */
+    public function price_list()
+    {
+        $u_id = $_SESSION['id'];
+        $signIn = new signInModel();
+        $data = $signIn->price_list($u_id);
+        echo json_encode($data);
     }
 }

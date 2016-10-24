@@ -21,37 +21,43 @@
 		</header>
 		<section class="s_section">
 			<div class="s_section_you">
-				<h3><a href="javascript:void(0)" id="sign_in">签到</a></h3>
+				<h3><a href="javascript:void(0)" id="sign_in">签到</a><br>
+					<a href="#">兑奖规则</a><br>
+					<a href="{{host}}signIn/price">已兑换的商品</a>
+				</h3>
 				<p><img src="{{host}}public/img/s_sd.png"/></p>
 				<ul>
 					<li>呦,天气不错哦</li>
+					<li>你一共签到<a href="#" style="color: black;">5</a>次</li>
 					<li>已连续签到<a href="{{host}}public/" style="color: black;"><span id="day"></span></a>天</li>
-					<li>你拥有<a href="{{host}}public/" style="color: black;">0</a>次的兑换机会</li>
+
+					<!-- <li>你拥有<a href="{{host}}public/" style="color: black;">0</a>次的兑换机会</li> -->
+
 				</ul>
 			</div>
 			<div class="s_section_jiang">
 				<h1>签到奖品</h1>
 				<div id="dll">
 					<dl>
-					<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
-					<dd><a href="{{host}}public/" ng-click='showss()'>兑换</a></dd>
-				</dl>
-				<dl>
-					<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
-					<dd><a href="{{host}}public/" ng-click='showss()'>兑换</a></dd>
-				</dl>
-				<dl>
-					<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
-					<dd><a href="{{host}}public/" ng-click='showss()'>兑换</a></dd>
-				</dl>
-				<dl>
-					<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
-					<dd><a href="{{host}}public/" ng-click='showss()'>兑换</a></dd>
-				</dl>
-				<dl>
-					<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
-					<dd><a href="{{host}}public/" ng-click='showss()'>兑换</a></dd>
-				</dl>
+						<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
+						<dd><a href="javascript:void(0)" class="change" ids="1">兑换</a></dd>
+					</dl>
+					<dl>
+						<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
+						<dd><a href="javascript:void(0)" class="change" ids="2">兑换</a></dd>
+					</dl>
+					<dl>
+						<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
+						<dd><a href="javascript:void(0)" class="change" ids="3">兑换</a></dd>
+					</dl>
+					<dl>
+						<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
+						<dd><a href="javascript:void(0)" class="change" ids="4">兑换</a></dd>
+					</dl>
+					<dl>
+						<dt><img src="{{host}}public/img/images/s_shou1_03.png"/></dt>
+						<dd><a href="javascript:void(0)" class="change" ids="5">兑换</a></dd>
+					</dl>
 				</div>
 				
 			</div>
@@ -114,9 +120,12 @@
 </html>
 <script>
 	$(function(){
+		//查看签到次数
 		$.get('{{host}}signIn/xiangqing',function(msg){
 			$("#day").html(msg.day)
 		},'json')
+
+		//签到，判断是否已经签到
 		$("#sign_in").click(function(){
 			$.get('{{host}}signIn/add',function(msg){
 				if(msg==0)
@@ -126,6 +135,20 @@
 					$("#day").html(msg.day)
 				}
 			},'json')
+		})
+
+		//奖品兑换
+		$(".change").click(function(){
+			var id = $(this).attr('ids')
+			$.get('{{host}}signIn/exchange/id/'+id,function(msg){
+				if(msg==0){
+					alert('值不够，不能兑换')
+				}else if(msg==1){
+					alert('兑换信息出错')
+				}else if(msg==2){
+					alert('兑换成功')
+				}
+			})
 		})
 	})
 </script>
