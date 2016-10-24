@@ -83,7 +83,7 @@
             }
         },'json')
         $.get("{{host}}order/getget",{},function (data) {
-            if(data==0)
+            if(data==1)
             {
                  location.href="{{host}}login/login"
             } else {
