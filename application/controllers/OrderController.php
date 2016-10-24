@@ -38,7 +38,7 @@ class OrderController extends \core\imooc
     {
         $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         if($user_id==0){
-            echo 0;die;
+            echo 1;die;
         }
         $model = new model();
         $list = $model->select("send",[ "[>]user_info" => ["send.u_id" => "u_id"]],'*',['send.r_id'=>$user_id]);

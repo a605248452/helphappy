@@ -43,7 +43,7 @@
             $(".loading").fadeOut();
         })
         $.get("{{host}}order/getsend",{},function (data) {
-            if(data==0)
+            if(data==1)
             {
                 window.location.href="{{host}}login/login"
             } else {
