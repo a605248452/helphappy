@@ -128,7 +128,7 @@ class CommentController extends \core\imooc
 	public function show2()
 	{
 		$u_id=$_SESSION['id'];
-		$s_id='12';
+		$s_id=get('s_id');
 		$e_type=1;
 		$model=new \application\models\estimateModel();
 		$data=$model->all($s_id,$e_type);
@@ -153,7 +153,7 @@ class CommentController extends \core\imooc
 	public function show3()
 	{
 		$u_id=$_SESSION['id'];
-		$s_id='12';
+		$s_id=get('s_id');
 		$e_type=0;
 		$model=new \application\models\estimateModel();
 		$data=$model->lend($s_id,$e_type);

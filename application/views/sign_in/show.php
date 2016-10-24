@@ -21,7 +21,7 @@
 		</header>
 		<section class="s_section">
 			<div class="s_section_you">
-				<h3><a href="javascript:void(0)" id="sign_in">签到</a><br>
+				<h3><a href="javascript:void(0)" id="sign_in">签到</a><br><br>
 					<a href="#">兑奖规则</a><br>
 					<a href="{{host}}signIn/price">已兑换的商品</a>
 				</h3>
@@ -29,6 +29,7 @@
 				<ul>
 					<li>呦,天气不错哦</li>
 					<li>你一共签到<a href="#" style="color: black;"><span id="sum"></span></a>次</li>
+					<li>你的值一共有<a href="#" style="color: black;"><span id="fen"></span></a>分</li>
 					<li>已连续签到<a href="{{host}}public/" style="color: black;"><span id="day"></span></a>天</li>
 
 					<!-- <li>你拥有<a href="{{host}}public/" style="color: black;">0</a>次的兑换机会</li> -->
@@ -122,6 +123,7 @@
 	$(function(){
 		//查看签到次数
 		$.get('{{host}}signIn/xiangqing',function(msg){
+			$("#fen").html(msg.integral)
 			$("#day").html(msg.day)
 			$("#sum").html(msg.sum)
 		},'json')
