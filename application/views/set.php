@@ -53,7 +53,6 @@
 			</dl>
 		</div>
 		<footer  data-position="fixed" data-role="footer">
-			<a data-role="none" href="{{host}}set/out" class="outset" data-ajax="false">退出登录</a>
 		</footer>
 		<script src="js/jquery.min.js"></script>
    		<script src="js/jquery.mobile-1.4.5.min.js"></script>

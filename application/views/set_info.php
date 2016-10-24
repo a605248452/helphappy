@@ -16,7 +16,12 @@
         <h3>个人信息</h3>
     </header>
     <div class="ui-content" data-role="content">
-
+        <div style="width:600px">
+            <form id="imageform" method="post" enctype="multipart/form-data" action='{{host}}set/img'>
+                上传 <input type="file" name="photoimg" id="photoimg" />
+            </form>
+            <div id="preview"><img src="{{host}}/{{one.img}}" alt="Uploading...." title="asd"/></div>
+        </div>
         <ul>
             <li>
                 <small style="margin-left: 25%"><font color="black"  size="3">用户名 ：</font></small>
@@ -32,7 +37,7 @@
             </li>
             <li>
                     <small style="margin-left: 25%"><font color="black" size="3">昵称 ：</font></small>
-                     <small id="nick">{{one.nickname}}</small>
+                <small id="nick">{{one.nickname}}</small>
             </li>
             <li>
                 <small style="margin-left: 25%"><font color="black" size="3">手机号 ：</font></small>
@@ -67,33 +72,21 @@
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.form.js"></script>
     <script type="text/javascript">
         $(window).load(function(){
             $(".loading").fadeOut();
 
-//            //既点既改
-//            $(document).on('click','#nick',function(){
-//                var val=$(this).html();
-//                //获取文本框内容 定义一个类来区分避免出BUG
-//                $(this).parent().html("<input type=\"text\" id=\"nk\" value="+val+"/>");
-//                //获取焦点
-//                var inp=$('#nk').focus();
-//                //失去焦点
-//                inp.blur(function(){
-//                    var new_val=$(this).val();
-//                    //利用post传值 参数1：传值地址  参数2：要传的值 参数3:返回函数
-//                    $.post("{{host}}set/change",{title:new_val},function(e){
-//                        //返回值为1则是新值 否则原值
-//                       alert(e);
-////                        if(e==1){
-////                            inp.parent().html("<b class=\"title\">"+new_val+"</b>")
-////                        }else{
-////                            inp.parent().html("<b class=\"title\">"+val+"</b>")
-////                        }
-//                    })
-//                })
-//            })
-        })
+        });
+        //换头像
+            $('#photoimg').change(function(){
+                $("#preview").html('');
+                $("#preview").html('<img src="{{host}}/{{one.img}}" alt="Uploading...." title="asd"/>');
+                $("#imageform").ajaxForm({
+                    target:'#preview'
+                }).submit();
+                history.go(0);
+            });
     </script>
 
 </body>

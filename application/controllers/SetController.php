@@ -56,6 +56,7 @@ class SetController  extends \core\imooc
             $this->display('set_bank.php');
         }
     }
+
     /*
      * 添加银行卡页面
      */
@@ -81,6 +82,7 @@ class SetController  extends \core\imooc
             $this->display('set_order.php');
         }
     }
+
     /*
      * 个人信息
      */
@@ -96,6 +98,7 @@ class SetController  extends \core\imooc
             $this->display('set_info.php');
         }
     }
+
     /*
      * 绑定手机
      */
@@ -111,6 +114,7 @@ class SetController  extends \core\imooc
             $this->display('set_bang.php');
         }
     }
+
     /*
      * 修改手机号页面
      */
@@ -123,6 +127,7 @@ class SetController  extends \core\imooc
             $this->display('set_phone.php');
         }
     }
+
     /*
     * 短信验证码
     */
@@ -155,6 +160,7 @@ class SetController  extends \core\imooc
 
         }
     }
+
     /*
      * 验证短信验证码
      */
@@ -168,21 +174,23 @@ class SetController  extends \core\imooc
             echo $rand;
         }
     }
+
     /*
      * 修改手机号
      */
-    public function setphone(){
+    public function setphone()
+    {
         $id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         if ($id == 0) {
             jump('Login/login');
         } else {
-        $phone=post('phone');
-        $model=new userModel();
-        $res=$model->save('user_info',['phone'=>$phone],['u_id'=>$id]);
-        if($res){
-            jump('Set/bang');
+            $phone = post('phone');
+            $model = new userModel();
+            $res = $model->save('user_info', ['phone' => $phone], ['u_id' => $id]);
+            if ($res) {
+                jump('Set/bang');
+            }
         }
-    }
     }
 
 
@@ -198,6 +206,7 @@ class SetController  extends \core\imooc
             $this->display('set_pass.php');
         }
     }
+
     /*
      * 设置交易密码页面
      */
@@ -215,6 +224,7 @@ class SetController  extends \core\imooc
             $this->display('set_gopass.php');
         }
     }
+
     /*
       * 设置交易密码
       */
@@ -233,6 +243,7 @@ class SetController  extends \core\imooc
             }
         }
     }
+
     /*
      * 交易旧密码
      */
@@ -270,6 +281,7 @@ class SetController  extends \core\imooc
             $this->display('set_topass.php');
         }
     }
+
     /*
     * 修改登录密码页面
     */
@@ -287,6 +299,7 @@ class SetController  extends \core\imooc
             $this->display('set_pwd.php');
         }
     }
+
     /*
       * 修改登陆密码
       */
@@ -305,6 +318,7 @@ class SetController  extends \core\imooc
             }
         }
     }
+
     /*
     * 登陆旧密码
     */
@@ -324,6 +338,7 @@ class SetController  extends \core\imooc
             }
         }
     }
+
     /*
      * 常见问题
      */
@@ -336,6 +351,7 @@ class SetController  extends \core\imooc
             $this->display('set_ques.php');
         }
     }
+
     /*
     * 关于我们
     */
@@ -348,35 +364,75 @@ class SetController  extends \core\imooc
             $this->display('set_details.php');
         }
     }
+
     /*
      * 退出登陆
      */
-    public function out(){
+    public function out()
+    {
         //注销登录
-            unset($_SESSION['id']);
-            unset($_SESSION['name']);
-            session_destroy();
-            jump('/');
+        unset($_SESSION['id']);
+        unset($_SESSION['name']);
+        session_destroy();
+        jump('/');
+        exit;
+    }
+
+    /*
+     * 修改昵称
+     */
+    public function change()
+    {
+        $id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
+        if ($id == 0) {
+            jump('Login/login');
+        } else {
+            $nick = post('title');
+            $model = new userModel();
+            $result = $model->save('user_info', ['nickname' => $nick], ['u_id' => $id]);
+            if ($result) {
+                echo 1;
+            }
+        }
+    }
+
+    /** 上传头像
+     * @param Request $request
+     */
+    public function img()
+    {
+        $file = $_FILES['photoimg'];
+        //var_dump($file);die;
+        $type = substr($file['name'], strrpos($file['name'], '.') + 1);
+        $size = $file['size'];
+        $valid_formats = array("jpg", "png", "gif", "bmp");
+        if (!in_array($type, $valid_formats)) {
+            echo "图片格式不符合要求";
             exit;
+        }
+        //ku
+        $id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
+        $model = new userModel();
+        $resume = $model->getone('user_info', ['u_id' => $id]);
+        //拼接图片地址
+        $data['img'] = './public/uploads/' . rand(0, 999).'.' .$type;
+        move_uploaded_file($file['tmp_name'], $data['img']);
+        //判断图片是否存在,进行删除替换
+        if (file_exists($resume['img'])) {
+            unlink($resume['img']);
+        };
+//        $res = Resume::updateResume($data, ['u_id' => $id]);
+        $res = $model->save('user_info', $data, ['u_id' => $id]);
+        if ($res) {
+            return $data['img'];
+        } else {
+            return $data['img'];
+        }
 
     }
 
-///*
-// * 修改昵称
-// */
-//    public function change()
-//    {
-//        $id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
-//        if ($id == 0) {
-//            jump('Login/login');
-//        } else {
-//            $nick = post('title');
-//            $model = new userModel();
-//            $result=$model->save('user_info',['nickname'=>$nick],['u_id'=>$id]);
-//            if($result){
-//                echo 1;
-//            }
-//        }
-//    }
+
 
 }
+
+
