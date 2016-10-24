@@ -89,20 +89,19 @@ class wechatCallbackapiTest
 
     public function userinfotmp($openid){
     	$model = new model();
-    	$res = $model->get('user','*',['open_id'=>$openid]);
+    	$res = $model->get('user','*',['open_id'=>"$openid"]);
     	if($res!=false){
     		$info = $model->get('user_info','*',['u_id'=>$res['u_id']]);
     		$json = '{
            	"touser":"'.$openid.'",
-           	"template_id":"DSwCc6CNn2JxyW23l-b2fWiAF-Ok6ntm4rdHqeYnbwA",
-           	"url":"http://bbl.lzyapp.cn/set/info",            
+           	"template_id":"DSwCc6CNn2JxyW23l-b2fWiAF-Ok6ntm4rdHqeYnbwA",           
            	"data":{
                    "frist": {
                        "value":"您已成功绑定帮帮乐账号",
                        "color":"red"
                    },
                    "keywords1":{
-                       "value":"'.$res['open_id'].'",
+                       "value":"'.$res['u_name'].'",
                        "color":"#173177"
                    },
                    "keywords2": {
