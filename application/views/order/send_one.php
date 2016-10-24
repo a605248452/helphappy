@@ -57,34 +57,44 @@
 				//查看是否评论对方
 				var s_id = $("#id").attr('ids');
 				$.get('{{host}}comment/show3/s_id'+s_id+'/type/1',function(msg){
-					if(msg==0)
-					{
-						$("#comment").show()
-					}
+					$.get('{{host}}lists/if_receive/s_id'+s_id,function(msg1){
+						if(msg1!=null)
+						{
+							if(msg==0)
+							{
+								$("#comment").show()
+							}
+						}
+					},'json')
 				},'json')
 
 				var id = $("#id").attr('ids')
 				$.get("{{host}}order/send_one_s/id/"+id,function(msg){
 					var table = '<tr><td>发单人</td><td>：'+msg.nickname+'</td></tr><tr><td>标题</td><td>'+msg.s_title+'</td></tr><tr><td>详细信息</td><td>'+msg.s_content+'</td></tr><tr><td>本单可得金额</td><td>'+msg.s_list_money+'￥</td></tr><tr><td>违约金额</td><td>'+msg.s_violate_money+'￥</td></tr><tr><td>发单人联系方式</td><td>'+msg.s_call+'</td></tr><tr><td>任务地址</td><td>'+msg.s_s_address+'</td></tr><tr><td>约定交易地点</td><td>'+msg.s_s_end_address+'</td></tr><tr><td>订单开始时间</td><td>'+msg.s_time+'</td></tr><tr><td>订单结束时间</td><td>'+msg.s_end_time+'</td></tr><tr><td>订单完成密码</td><td>'+msg.s_pwd+'</td></tr>';
 					$("#table").append(table)
-					if(msg.s_violate_u!='1')
+					alert(msg.r_id)
+					if(msg.r_id!=null)
 					{
-						$("#dis").show()
-					}else{
-						$("#end_address").show()
-
-						//判断接单人是否评论
-						if(msg.s_type==4)
+						if(msg.s_violate_u!='1')
 						{
-							var s_id = $("#id").attr('ids');
-							$.get('{{host}}comment/show2/s_id/'+s_id+'/e_type/1',function(msg){
-								if(msg!=0)
-								{
-									$("#table1").append('<tr><td>接单人评论:</td><td>'+msg.e_content+'</td></tr>')
-								}
-							},'json')
+							$("#dis").show()
+						}else{
+							$("#end_address").show()
+
+							//判断接单人是否评论
+							if(msg.s_type==4)
+							{
+								var s_id = $("#id").attr('ids');
+								$.get('{{host}}comment/show2/s_id/'+s_id+'/e_type/1',function(msg){
+									if(msg!=0)
+									{
+										$("#table1").append('<tr><td>接单人评论:</td><td>'+msg.e_content+'</td></tr>')
+									}
+								},'json')
+							}
 						}
 					}
+					
 				},'json')
 
 				//接单

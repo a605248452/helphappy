@@ -196,4 +196,15 @@ class ListsController extends \core\imooc
 			echo '0';
 		}
 	}
+
+	/**
+	 * 订单是否已经被接收
+	 */
+	public function if_receive()
+	{
+		$s_id = get('s_id');
+		$lists = new listsModel();
+		$data = $lists->if_receive($s_id);
+		echo json_encode($data);die;
+	}
 }

@@ -126,5 +126,14 @@ class listsModel extends model
         }
     }
 
+    /**
+     * 判断订单是否已经被接收
+     */
+    public function if_receive($s_id)
+    {
+        $data = $this->get($this->table1,['r_id'],['s_id' => $s_id]);
+        return $data['r_id'];
+    }
+
 
 }
